@@ -4,6 +4,6 @@ if ! head -1 "$1" | grep -qE "^(feat|fix|chore|docs|test|style|refactor|perf|bui
     exit 1
 fi
 if ! head -1 "$1" | grep -qE "^.{1,88}$"; then
-    echo "ERROR: El mensaje de su commit es mu largo." >&2
+    echo "ERROR: El mensaje de su commit es muy largo." >&2
     exit 1
 fi

@@ -2,27 +2,8 @@
 
 # Verificar el formato del código
 if ! pnpm check-format; then
-    echo "ERROR: Tu código no respeta las convenciones de formato."
-    echo "¿Deseas formatearlo ahora? (y/n)"
-    
-    # Leer la respuesta del usuario
-    read answer
-    
-    # Convertir la respuesta a minúsculas para manejar 'Y' y 'N' indistintamente
-    answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
-    
-    # Procesar la respuesta del usuario
-    if [ "$answer" = "y" ]; then
-        # Formatear el código
-        pnpm run format
-        echo "Se ha formateado el código."
-        exit 0
-    else
-        # Mostrar mensaje y salir con error
-        echo "No se realizó ningún formateo."
-        exit 1
-    fi
+    echo "ERROR: Tu código no respeta las convenciones de formato. Vamos a hacerlo ..."
+    pnpm run format
 fi
 
-exit 0
 
