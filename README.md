@@ -1,54 +1,59 @@
-# Astro Starter Kit: Basics
+# Interfaz Gráfica para Exámenes de la Universidad
 
-```sh
-npm create astro@latest -- --template basics
-```
+Se desea crear una plataforma web para facilitar el acceso a exámenes antiguos almacenados en formato PDF e imágenes en un repositorio de GitHub.
+El propósito principal es proporcionar una interfaz gráfica que permita a los estudiantes acceder, visualizar y organizar estos documentos. Además, se busca simplificar el proceso de colaboración para que los alumnos puedan contribuir con nuevos documentos sin necesidad de conocimientos técnicos en Git o GitHub.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## Sitio web
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Proximamente...
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## Tabla de contenidos
 
-## 🚀 Project Structure
+1. [Instalación y Ejecución](#instalación-y-ejecución)
+    - [Requisitos](#requisitos)
+    - [Instalación](#instalación)
+    - [Ejecución](#ejecución)
+2. [Contribuciónes](#contribuciónes)
+    - [¿Quién puede contribuir?](#¿quién-puede-contribuir?)
+    - [¿Cómo contribuir?](#¿cómo-contribuir?)
+    - [¿Dónde puedo pedir ayuda?](#¿dónde-puedo-pedir-ayuda?)
+3. [Convenciones](#convenciones)
+    - [Formato de codificación](#estilo-de-codificación)
+    - [Formato de commits](#estilo-de-commits)
+    - [Control de versiones](#control-de-versiones)
+    - [Documentación](#documentación)
+4. [Licencia](#licencia)
 
-Inside of your Astro project, you'll see the following folders and files:
+## Instalación y Ejecución
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+<!--
+### Requisitos
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Instalación
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Ejecución
+-->
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Contribuciónes
 
-## 🧞 Commands
+<!--
+### ¿Quién puede contribuir?
 
-All commands are run from the root of the project, from a terminal:
+### ¿Cómo contribuir?
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### ¿Dónde puedo pedir ayuda?
+-->
 
-## 👀 Want to learn more?
+## Convenciones
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+<!--
+### Estilo de codificación
+
+### Estilo de commits
+
+### Control de versiones
+
+### Documentación
+-->
+
+## Licencia
