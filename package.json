@@ -1,0 +1,30 @@
+{
+    "name": "examenes-viejos",
+    "type": "module",
+    "version": "0.0.1",
+    "scripts": {
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro check && astro build",
+        "preview": "astro preview",
+        "astro": "astro",
+        "format": "prettier --write .",
+        "check-format": "prettier --check .",
+        "prepare": "husky"
+    },
+    "dependencies": {
+        "@astrojs/check": "^0.7.0",
+        "@astrojs/tailwind": "^5.1.0",
+        "astro": "^4.10.2",
+        "prettier-plugin-astro": "^0.14.0",
+        "prettier-plugin-tailwindcss": "^0.6.4",
+        "tailwindcss": "^3.4.4",
+        "typescript": "^5.4.5"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^19.3.0",
+        "@commitlint/config-conventional": "^19.2.2",
+        "husky": "^9.0.11",
+        "prettier": "^3.3.2"
+    }
+}
