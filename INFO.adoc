@@ -1,0 +1,254 @@
+= SPEC-001: Interfaz Gráfica para Exámenes de la Universidad
+:sectnums:
+:toc:
+
+
+== Background
+
+Un grupo de alumnos de la Universidad desea crear una plataforma web para facilitar el acceso a exámenes antiguos almacenados en formato PDF e imágenes en un repositorio de GitHub. El propósito principal es proporcionar una interfaz gráfica que permita a los estudiantes acceder, visualizar y organizar estos documentos. Además, se busca simplificar el proceso de colaboración para que los alumnos puedan contribuir con nuevos documentos sin necesidad de conocimientos técnicos en Git o GitHub.
+
+== Requirements
+
+*Must have*:
+- Acceso a documentos PDF e imágenes desde el repositorio de GitHub.
+- Interfaz gráfica extremadamente intuitiva, rápida y fácil de usar para visualizar y organizar los documentos, sin que haya barreras para los usuarios.
+- Capacidad para que los alumnos suban nuevos documentos sin conocimientos de Git o GitHub.
+- Sistema de autenticación para proteger la funcionalidad de subida de documentos.
+
+*Should have*:
+- Sistema de búsqueda para encontrar documentos específicos.
+- Etiquetado y categorización de documentos.
+- Notificaciones cuando se agregan nuevos documentos.
+
+*Could have*:
+- Comentarios y discusiones en los documentos.
+- Sistema de versiones para los documentos.
+- Integración con otras herramientas educativas.
+
+*Won't have*:
+- Funcionalidades avanzadas de edición de documentos.
+
+== Method
+
+=== Arquitectura General
+
+La plataforma web se construirá utilizando las siguientes tecnologías y componentes:
+
+- **Astro**: Framework principal para la construcción de la interfaz gráfica.
+- **Tailwind CSS**: Framework de diseño para crear una interfaz intuitiva y rápida.
+- **Firebase Authentication**: Servicio de autenticación para gestionar el acceso de los usuarios que suben contenido.
+- **GitHub API**: Para interactuar con el repositorio de documentos.
+
+=== Componentes Principales
+
+[plantuml, componentes, png]
+----
+@startuml
+actor Usuario
+actor "Usuario autenticado" as AuthUser
+component "Interfaz de Usuario" {
+  [Astro]
+  [Tailwind CSS]
+}
+component "Backend" {
+  [Firebase Authentication]
+  [GitHub API]
+}
+
+Usuario --> Astro
+AuthUser --> Astro
+Astro --> Tailwind CSS
+Astro --> Firebase Authentication : Subida de documentos
+Astro --> GitHub API : Acceso a documentos
+@enduml
+----
+
+=== Flujo de Trabajo
+
+1. **Acceso a Documentos**: Los usuarios acceden libremente a los documentos PDF e imágenes desde la interfaz de usuario, que se conecta con la API de GitHub para obtener los documentos.
+2. **Autenticación para Subir Contenido**: Los usuarios que desean subir nuevos documentos se autentican utilizando Firebase Authentication.
+3. **Subida de Documentos**: Los usuarios autenticados pueden subir nuevos documentos a través de la interfaz, que se gestionan en el backend para añadirlos al repositorio de GitHub sin que los usuarios necesiten conocer Git.
+
+=== Esquema de Base de Datos
+
+No se necesita una base de datos específica ya que todos los documentos se almacenan en GitHub y la autenticación se maneja con Firebase.
+
+=== Algoritmos
+
+1. **Autenticación para Subir Contenido**:
+   - Los usuarios que desean subir contenido se registran o inician sesión utilizando Firebase Authentication.
+   - Una vez autenticados, se genera un token de sesión que se utiliza para autorizar las solicitudes de subida a la API de GitHub.
+
+2. **Acceso a Documentos**:
+   - La aplicación utiliza la API de GitHub para listar y obtener los documentos.
+   - Los documentos se descargan y se muestran en la interfaz de usuario.
+
+3. **Subida de Documentos**:
+   - Los usuarios autenticados suben archivos a través de un formulario en la interfaz.
+   - El backend procesa estos archivos y realiza commits automáticos al repositorio de GitHub utilizando tokens de acceso seguros.
+
+== Implementation
+
+=== Paso 1: Configuración del Proyecto
+
+1. **Crear el Proyecto Astro**:
+   - Instalar Astro: `npm create astro@latest`
+   - Configurar el proyecto con las opciones deseadas.
+
+2. **Instalar Tailwind CSS**:
+   - Seguir la [guía oficial de Tailwind CSS](https://tailwindcss.com/docs/guides/astro) para integrar Tailwind en un proyecto Astro.
+
+3. **Configurar Firebase Authentication**:
+   - Crear un proyecto en Firebase.
+   - Habilitar Firebase Authentication con el método de autenticación preferido (por ejemplo, correo electrónico y contraseña).
+   - Configurar las credenciales de Firebase en el proyecto Astro.
+
+=== Paso 2: Diseño de la Interfaz de Usuario
+
+1. **Diseñar la Interfaz**:
+   - Utilizar Tailwind CSS para crear una interfaz limpia y fácil de usar.
+   - Crear wireframes y prototipos interactivos para obtener feedback inicial.
+
+=== Paso 3: Desarrollo de la Interfaz de Usuario
+
+1. **Desarrollar la Interfaz**:
+   - Desarrollar la interfaz gráfica basada en los diseños aprobados.
+   - Implementar componentes reutilizables para la visualización de documentos y la navegación.
+
+2. **Integrar la API de GitHub**:
+   - Configurar la API de GitHub para obtener los documentos del repositorio.
+   - Implementar funciones en Astro para listar y mostrar los documentos.
+
+=== Paso 4: Implementación de la Autenticación
+
+1. **Integrar Firebase Authentication**:
+   - Añadir formularios de inicio de sesión y registro para los usuarios que desean subir contenido.
+   - Implementar la lógica de autenticación utilizando las bibliotecas de Firebase para JavaScript.
+
+2. **Gestionar el Estado de Autenticación**:
+   - Mantener el estado de autenticación del usuario en la aplicación.
+   - Mostrar opciones de subida de documentos solo para usuarios autenticados.
+
+=== Paso 5: Funcionalidad de Subida de Documentos
+
+1. **Crear el Formulario de Subida**:
+   - Diseñar un formulario sencillo para la subida de documentos.
+   - Validar los archivos antes de la subida (por ejemplo, tamaño y tipo de archivo).
+
+2. **Subir Documentos a GitHub**:
+   - Utilizar la API de GitHub para realizar commits automáticos con los documentos subidos.
+   - Gestionar tokens de acceso seguros para realizar las operaciones en GitHub.
+
+=== Paso 6: Pruebas y Despliegue
+
+1. **Pruebas**:
+   - Realizar pruebas exhaustivas para asegurarse de que la interfaz es intuitiva y funciona correctamente.
+   - Probar la funcionalidad de subida de documentos y la integración con GitHub.
+
+2. **Despliegue**:
+   - Desplegar la aplicación en una plataforma de hosting (por ejemplo, Vercel, Netlify).
+   - Configurar el dominio y las opciones de seguridad necesarias.
+
+== Milestones
+
+=== Hito 1: Configuración Inicial
+- **Duración**: 1 semana
+- **Tareas**:
+  - Crear el proyecto Astro.
+  - Integrar Tailwind CSS.
+  - Configurar Firebase Authentication.
+
+=== Hito 2: Diseño de la Interfaz de Usuario
+- **Duración**: 1 semana
+- **Tareas**:
+  - Diseñar la interfaz gráfica enfocándose en la usabilidad y simplicidad.
+  - Crear wireframes y prototipos interactivos para obtener feedback inicial.
+
+=== Hito 3: Desarrollo de la Interfaz de Usuario
+- **Duración**: 2 semanas
+- **Tareas**:
+  - Desarrollar la interfaz gráfica basada en los diseños aprobados.
+  - Implementar la integración con la API de GitHub para la visualización de documentos.
+
+=== Hito 4: Implementación de la Autenticación
+- **Duración**: 1 semana
+- **Tareas**:
+  - Integrar Firebase Authentication en la aplicación.
+  - Crear formularios de inicio de sesión y registro.
+
+=== Hito 5: Funcionalidad de Subida de Documentos
+- **Duración**: 2 semanas
+- **Tareas**:
+  - Diseñar e implementar el formulario de subida de documentos.
+  - Integrar la subida de documentos con la API de GitHub.
+
+=== Hito 6: Pruebas y Despliegue
+- **Duración**: 1 semana
+- **Tareas**:
+  - Realizar pruebas exhaustivas de la aplicación.
+  - Desplegar la aplicación en una plataforma de hosting.
+
+=== Hito 7: Revisión y Mejoras
+- **Duración**: 1 semana
+- **Tareas**:
+  - Revisar la aplicación con feedback de usuarios.
+  - Implementar mejoras y correcciones según sea necesario.
+
+== Gathering Results
+
+=== Evaluación de Requisitos
+
+1. **Acceso a Documentos**:
+   - Verificar que los usuarios pueden acceder y visualizar documentos PDF e imágenes sin problemas.
+   - Confirmar que la interfaz gráfica es intuitiva, rápida y fácil de usar mediante pruebas de usuario.
+
+2. **Subida de Documentos**:
+   - Comprobar que los usuarios autenticados pueden subir nuevos documentos al repositorio de GitHub sin necesidad de conocimientos de Git.
+   - Asegurarse de que los documentos subidos se reflejan correctamente en la interfaz de usuario.
+
+3. **Autenticación**:
+   - Revisar que solo los usuarios autenticados pueden acceder a la funcionalidad de subida de documentos.
+   - Evaluar la eficacia del sistema de autenticación en términos de seguridad y facilidad de uso.
+
+4. **Funcionalidades Adicionales**:
+   - Verificar la funcionalidad del sistema de búsqueda y la categorización de documentos, si
+ se implementaron.
+   - Confirmar que las notificaciones funcionan correctamente, si se implementaron.
+
+=== Medición del Rendimiento
+
+1. **Pruebas de Carga**:
+   - Realizar pruebas de carga para evaluar el rendimiento de la aplicación bajo diferentes condiciones de uso.
+   - Medir el tiempo de respuesta y la estabilidad del sistema.
+
+2. **Encuestas de Satisfacción**:
+   - Recopilar feedback de los usuarios mediante encuestas para evaluar la satisfacción con la interfaz y la funcionalidad.
+   - Identificar áreas de mejora basadas en las respuestas de los usuarios.
+
+3. **Métricas de Uso**:
+   - Analizar las métricas de uso, como el número de usuarios activos, la cantidad de documentos subidos y visualizados, y el tiempo de sesión.
+   - Utilizar herramientas de análisis web para recopilar estos datos y generar informes.
+
+4. **Revisión Continua**:
+   - Implementar un proceso de revisión continua para ajustar y mejorar la aplicación basada en el feedback y las métricas recopiladas.
+   - Planificar actualizaciones periódicas para mantener la aplicación optimizada y alineada con las necesidades de los usuarios.
+ se implementaron.
+   - Confirmar que las notificaciones funcionan correctamente, si se implementaron.
+
+=== Medición del Rendimiento
+
+1. **Pruebas de Carga**:
+   - Realizar pruebas de carga para evaluar el rendimiento de la aplicación bajo diferentes condiciones de uso.
+   - Medir el tiempo de respuesta y la estabilidad del sistema.
+
+2. **Encuestas de Satisfacción**:
+   - Recopilar feedback de los usuarios mediante encuestas para evaluar la satisfacción con la interfaz y la funcionalidad.
+   - Identificar áreas de mejora basadas en las respuestas de los usuarios.
+
+3. **Métricas de Uso**:
+   - Analizar las métricas de uso, como el número de usuarios activos, la cantidad de documentos subidos y visualizados, y el tiempo de sesión.
+   - Utilizar herramientas de análisis web para recopilar estos datos y generar informes.
+
+4. **Revisión Continua**:
+   - Implementar un proceso de revisión continua para ajustar y mejorar la aplicación basada en el feedback y las métricas recopiladas.
+   - Planificar actualizaciones periódicas para mantener la aplicación optimizada y alineada con las necesidades de los usuarios.
