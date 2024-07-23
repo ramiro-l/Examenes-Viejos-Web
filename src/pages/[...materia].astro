@@ -85,7 +85,7 @@ const otros: Examen[] = materiaRepository.exams.filter((examen) => examen.type =
 
 const cant_parciales = parciales.reduce(
     (max, examen) => Math.max(max, examen.number && examen.number <= 10 ? examen.number : 1),
-    1,
+    1
 );
 
 const parciales_for_number: Examen[][] = Array.from({ length: cant_parciales }, () => []);
@@ -107,20 +107,20 @@ parciales.forEach((parcial) => {
 >
     <h1 class="text-4xl">{materia.name}</h1>
 
-    <div class="my-2">
+    <div class="my-2 max-sm:flex max-sm:flex-col">
         <a href={materia.repo_examenes} target="_blank" rel="noopener noreferrer">
-            <Badge className="my-1"
-                >Repositorio
+            <Badge className="my-1 max-sm:flex max-sm:w-full max-sm:justify-between">
+                <p>Repositorio</p>
                 <Icon name="carbon:logo-github" size={16} class="ml-2" />
             </Badge>
         </a>
-        <Badge className="my-1" variant="outline">{carrera.facultad}</Badge>
+        <Badge className="my-1 max-sm:w-full" variant="outline">{carrera.facultad}</Badge>
         <a href={`/${carrera.code}`}>
-            <Badge className="my-1" variant="outline">{carrera.name} </Badge>
+            <Badge className="my-1 max-sm:w-full" variant="outline">{carrera.name} </Badge>
         </a>
 
-        <Badge className="my-1" variant="outline">{materia.anio}º año</Badge>
-        <Badge className="my-1" variant="outline"
+        <Badge className="my-1 max-sm:w-full" variant="outline">{materia.anio}º año</Badge>
+        <Badge className="my-1 max-sm:w-full" variant="outline"
             >{parse_curtimestre_number_to_text(materia.cuatrimestre)} cuatrimestre</Badge
         >
     </div>
@@ -146,7 +146,7 @@ parciales.forEach((parcial) => {
                                     </h2>
                                     <TableExamenes examenes={parciales} />
                                 </div>
-                            ),
+                            )
                     )}
                 </div>
             )

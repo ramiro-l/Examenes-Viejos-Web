@@ -21,7 +21,7 @@ const { examenes } = Astro.props;
 <Table className="mb-10">
     <TableHeader>
         <TableRow
-            ><TableHead>Tipo</TableHead>
+            ><TableHead className="max-sm:hidden">Tipo</TableHead>
             <TableHead>Fecha</TableHead>
             <TableHead>Archivo</TableHead>
             <TableHead className="text-right" />
@@ -31,7 +31,7 @@ const { examenes } = Astro.props;
         {
             examenes.map((examen: Examen) => (
                 <TableRow>
-                    <TableCell className=" w-[60px]">
+                    <TableCell className=" w-[60px] max-sm:hidden">
                         {examen.file_type === "pdf" ? (
                             <Icon name="carbon:document" size={20} />
                         ) : (
@@ -39,7 +39,7 @@ const { examenes } = Astro.props;
                         )}
                     </TableCell>
                     <TableCell className=" font-extrabold">{examen.date}</TableCell>
-                    <TableCell>{examen.file_name}</TableCell>
+                    <TableCell className=" max-sm:text-xs">{examen.file_name}</TableCell>
                     <TableCell className="flex justify-end">
                         <div class="flex max-w-[500px] justify-end text-right">
                             <a
@@ -56,7 +56,7 @@ const { examenes } = Astro.props;
                                 href={examen.download_url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                class="mx-2 w-full"
+                                class="mx-2 w-full max-md:hidden"
                             >
                                 <Button variant="outline" className="h-8 w-full">
                                     <Icon name="carbon:download" size={20} />
@@ -66,7 +66,7 @@ const { examenes } = Astro.props;
                                 href={examen.web_url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                class="ml-2 w-full"
+                                class="ml-2 w-full max-sm:hidden"
                             >
                                 <Button variant="outline" className="h-8 w-full">
                                     <Icon name="carbon:logo-github" size={20} />

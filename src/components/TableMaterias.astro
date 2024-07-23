@@ -16,12 +16,12 @@ const { carrera, materias } = Astro.props;
 const cant_anios = materias.reduce((max, materia) => Math.max(max, materia.anio), 0);
 const cant_cuatrimestres = materias.reduce(
     (max, materia) => Math.max(max, materia.cuatrimestre),
-    0,
+    0
 );
 
 // Inicializar el arreglo multidimensional
 const materias_ordenadas: Materia[][][] = Array.from({ length: cant_anios }, () =>
-    Array.from({ length: cant_cuatrimestres }, () => []),
+    Array.from({ length: cant_cuatrimestres }, () => [])
 );
 
 // Llenar el arreglo multidimensional
@@ -53,25 +53,31 @@ const parse_curtimestre_number_to_text = (cuatrimestre: number) => {
         {
             materias_ordenadas.map((materias_anio, anio) => (
                 <TableRow>
-                    <TableCell className="text-left align-text-top font-extrabold">
+                    <TableCell className="text-left align-text-top font-extrabold max-sm:pl-2 pr-1">
                         {anio + 1}º año
                     </TableCell>
-                    {materias_anio.map((materias_cuatrimestre, cuatrimestre) => (
-                        <TableCell className="text-left align-text-top">
-                            <div class="mb-2 ml-3">
-                                {parse_curtimestre_number_to_text(cuatrimestre + 1)} Cuatrimestre
-                            </div>
-                            {materias_cuatrimestre.map((materia) => (
-                                <div>
-                                    <a href={`/${carrera.code}/${materia.code}`}>
-                                        <Button variant="link" className=" uppercase">
-                                            {materia.name}
-                                        </Button>
-                                    </a>
+                    <TableCell className="grid grid-cols-2 max-md:grid-cols-1 max-sm:px-1">
+                        {materias_anio.map((materias_cuatrimestre, cuatrimestre) => (
+                            <div class="w-fit text-left align-text-top max-md:mb-6">
+                                <div class="mb-2 ml-3">
+                                    {parse_curtimestre_number_to_text(cuatrimestre + 1)}{" "}
+                                    Cuatrimestre
                                 </div>
-                            ))}
-                        </TableCell>
-                    ))}
+                                {materias_cuatrimestre.map((materia) => (
+                                    <div>
+                                        <a href={`/${carrera.code}/${materia.code}`}>
+                                            <Button
+                                                variant="link"
+                                                className=" uppercase text-wrap text-left"
+                                            >
+                                                {materia.name}
+                                            </Button>
+                                        </a>
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
+                    </TableCell>
                 </TableRow>
             ))
         }
