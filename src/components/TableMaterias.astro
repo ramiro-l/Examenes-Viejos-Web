@@ -63,7 +63,7 @@ const parse_curtimestre_number_to_text = (cuatrimestre: number) => {
                             </div>
                             {materias_cuatrimestre.map((materia) => (
                                 <div>
-                                    <a href={`${carrera.code}/${materia.code}`}>
+                                    <a href={`/${carrera.code}/${materia.code}`}>
                                         <Button variant="link" className=" uppercase">
                                             {materia.name}
                                         </Button>
