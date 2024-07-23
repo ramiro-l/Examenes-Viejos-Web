@@ -1,28 +1,20 @@
 # Interfaz Gráfica para Exámenes de la Universidad
 
-Se desea crear una plataforma web para facilitar el acceso a exámenes antiguos almacenados en formato PDF e imágenes en un repositorio de GitHub.
-El propósito principal es proporcionar una interfaz gráfica que permita a los estudiantes acceder, visualizar y organizar estos documentos. Además, se busca simplificar el proceso de colaboración para que los alumnos puedan contribuir con nuevos documentos sin necesidad de conocimientos técnicos en Git o GitHub.
+Una plataforma web para facilitar el acceso a exámenes antiguos almacenados en formato PDF e imágenes en un repositorio de GitHub [ExamenesViejos-FaMAF-Computacion](https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos-FaMAF-Computacion).
 
 ## Sitio web
 
-Proximamente...
+Podes acceder a la web en [este enlace](https://examenes-viejos.pages.dev/).
 
 ## Tabla de contenidos
 
-1. [Instalación y Ejecución](#instalación-y-ejecución)
-    - [Requisitos](#requisitos)
-    - [Instalación](#instalación)
-    - [Ejecución](#ejecución)
-2. [Contribuciónes](#contribuciónes)
-    - [¿Quién puede contribuir?](#¿quién-puede-contribuir?)
-    - [¿Cómo contribuir?](#¿cómo-contribuir?)
-    - [¿Dónde puedo pedir ayuda?](#¿dónde-puedo-pedir-ayuda?)
-3. [Convenciones](#convenciones)
-    - [Formato de codificación](#estilo-de-codificación)
-    - [Formato de commits](#estilo-de-commits)
-    - [Control de versiones](#control-de-versiones)
-    - [Documentación](#documentación)
-4. [Licencia](#licencia)
+-   [Interfaz Gráfica para Exámenes de la Universidad](#interfaz-gráfica-para-exámenes-de-la-universidad)
+    -   [Sitio web](#sitio-web)
+    -   [Tabla de contenidos](#tabla-de-contenidos)
+    -   [Instalación y Ejecución](#instalación-y-ejecución)
+    -   [Contribuciónes](#contribuciónes)
+    -   [Convenciones](#convenciones)
+    -   [Licencia](#licencia)
 
 ## Instalación y Ejecución
 
