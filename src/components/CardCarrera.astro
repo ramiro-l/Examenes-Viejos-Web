@@ -1,0 +1,25 @@
+---
+import type { Carrera } from "@/models/carrera";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "./ui/button";
+
+interface Props {
+    carrera: Carrera;
+}
+
+const { carrera } = Astro.props;
+---
+
+<Card className="mb-5 border-solid">
+    <CardHeader>
+        <CardTitle className="text-center">{carrera.name}</CardTitle>
+        <CardDescription className="text-center">
+            Esta carrera es de {carrera.facultad} y tiene una duración de {carrera.duracion} años.
+        </CardDescription>
+    </CardHeader>
+    <CardContent className="flex justify-center">
+        <a href={`/${carrera.code}`}>
+            <Button>Ver todas las materias</Button>
+        </a>
+    </CardContent>
+</Card>

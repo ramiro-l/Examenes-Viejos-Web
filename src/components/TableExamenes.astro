@@ -1,0 +1,81 @@
+---
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableRow,
+    TableHeader,
+    TableHead,
+} from "@/components/ui/table";
+import { Button } from "./ui/button";
+import { Icon } from "astro-icon/components";
+import type { Examen } from "@/models/examen";
+
+interface Props {
+    examenes: Examen[];
+}
+
+const { examenes } = Astro.props;
+---
+
+<Table className="mb-10">
+    <TableHeader>
+        <TableRow
+            ><TableHead>Tipo</TableHead>
+            <TableHead>Fecha</TableHead>
+            <TableHead>Archivo</TableHead>
+            <TableHead className="text-right" />
+        </TableRow>
+    </TableHeader>
+    <TableBody>
+        {
+            examenes.map((examen: Examen) => (
+                <TableRow>
+                    <TableCell className=" w-[60px]">
+                        {examen.file_type === "pdf" ? (
+                            <Icon name="carbon:document" size={20} />
+                        ) : (
+                            <Icon name="carbon:image" size={20} />
+                        )}
+                    </TableCell>
+                    <TableCell className=" font-extrabold">{examen.date}</TableCell>
+                    <TableCell>{examen.file_name}</TableCell>
+                    <TableCell className="flex justify-end">
+                        <div class="flex max-w-[500px] justify-end text-right">
+                            <a
+                                href={examen.view_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="mr-2 w-full"
+                            >
+                                <Button variant="outline" className="h-8 w-full">
+                                    <Icon name="carbon:view-filled" size={20} />
+                                </Button>
+                            </a>
+                            <a
+                                href={examen.download_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="mx-2 w-full"
+                            >
+                                <Button variant="outline" className="h-8 w-full">
+                                    <Icon name="carbon:download" size={20} />
+                                </Button>
+                            </a>
+                            <a
+                                href={examen.web_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="ml-2 w-full"
+                            >
+                                <Button variant="outline" className="h-8 w-full">
+                                    <Icon name="carbon:logo-github" size={20} />
+                                </Button>
+                            </a>
+                        </div>
+                    </TableCell>
+                </TableRow>
+            ))
+        }
+    </TableBody>
+</Table>
