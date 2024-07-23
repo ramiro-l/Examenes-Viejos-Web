@@ -1,0 +1,164 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Badge } from "@/components/ui/badge";
+import { Icon } from "astro-icon/components";
+import MateriaRepository from "@/services/examenes/materia_repository";
+import TableExamenes from "@/components/TableExamenes.astro";
+
+import carreras from "@/data/carreras.json";
+import materias from "@/data/materias.json";
+import type { Materia } from "@/models/materia";
+import type { Carrera } from "@/models/carrera";
+import type { Examen } from "@/models/examen";
+
+interface paramsType {
+    params: {
+        materia: string;
+    };
+    props: {
+        carrera: Carrera;
+        materia: Materia;
+    };
+}
+
+export function getStaticPaths() {
+    const params: paramsType[] = [];
+    const carreras_data = carreras as Carrera[];
+    const materias_data = materias as Materia[];
+
+    for (let i = 0; i < carreras_data.length; i++) {
+        const carrera = carreras_data[i];
+
+        const materias_carrera = materias_data.filter((m) => m.carreras.includes(carrera.code));
+
+        for (let j = 0; j < materias_carrera.length; j++) {
+            const materia = materias_carrera[j];
+            params.push({
+                params: {
+                    materia: `${carrera.code}/${materia.code}`,
+                },
+                props: {
+                    carrera: carrera,
+                    materia: materia,
+                },
+            });
+        }
+    }
+    return params;
+}
+
+const { carrera, materia } = Astro.props;
+
+const materiaRepository = new MateriaRepository(materia.repo_examenes, materia.path);
+await materiaRepository.fetchContent();
+
+const parse_curtimestre_number_to_text = (cuatrimestre: number) => {
+    switch (cuatrimestre) {
+        case 1:
+            return "Primer";
+        case 2:
+            return "Segundo";
+        case 3:
+            return "Tercer";
+        case 4:
+            return "Cuarto";
+        default:
+            return "Desconocido";
+    }
+};
+
+materiaRepository.exams.sort((a, b) => {
+    if (a.date && b.date) {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+    } else if (a.date) {
+        return -1;
+    } else if (b.date) {
+        return 1;
+    } else {
+        return 0;
+    }
+});
+
+const finales: Examen[] = materiaRepository.exams.filter((examen) => examen.type === "Final");
+const parciales: Examen[] = materiaRepository.exams.filter((examen) => examen.type === "Parcial");
+const otros: Examen[] = materiaRepository.exams.filter((examen) => examen.type === "Otro");
+
+const cant_parciales = parciales.reduce(
+    (max, examen) => Math.max(max, examen.number && examen.number <= 10 ? examen.number : 1),
+    1,
+);
+
+const parciales_for_number: Examen[][] = Array.from({ length: cant_parciales }, () => []);
+
+parciales.forEach((parcial) => {
+    if (parcial.number && parcial.number <= 10 && parcial.number > 0) {
+        parciales_for_number[parcial.number - 1].push(parcial);
+    } else {
+        otros.push(parcial);
+    }
+});
+---
+
+<Layout
+    title={`Examenes Viejos | ${materia.name}`}
+    metaImage=""
+    metaDescription="Esta pagina es una interfaz para ver los examenes viejos del repositorio de github"
+    metaKeywords="examenes, viejos, famaf, computacion"
+>
+    <h1 class="text-4xl">{materia.name}</h1>
+
+    <div class="my-2">
+        <a href={materia.repo_examenes} target="_blank" rel="noopener noreferrer">
+            <Badge className="my-1"
+                >Repositorio
+                <Icon name="carbon:logo-github" size={16} class="ml-2" />
+            </Badge>
+        </a>
+        <Badge className="my-1" variant="outline">{carrera.facultad}</Badge>
+        <a href={`/${carrera.code}`}>
+            <Badge className="my-1" variant="outline">{carrera.name} </Badge>
+        </a>
+
+        <Badge className="my-1" variant="outline">{materia.anio}º año</Badge>
+        <Badge className="my-1" variant="outline"
+            >{parse_curtimestre_number_to_text(materia.cuatrimestre)} cuatrimestre</Badge
+        >
+    </div>
+    <br />
+    <div class="flex flex-col flex-wrap">
+        {
+            finales.length > 0 && (
+                <div>
+                    <h2 class="mb-2 border-b border-white pb-2 text-2xl">Finales</h2>
+                    <TableExamenes examenes={finales} />
+                </div>
+            )
+        }
+        {
+            parciales.length > 0 && (
+                <div>
+                    {parciales_for_number.map(
+                        (parciales, index) =>
+                            parciales.length > 0 && (
+                                <div>
+                                    <h2 class="mb-2 border-b border-white pb-2 text-2xl">
+                                        Parcial {index + 1}
+                                    </h2>
+                                    <TableExamenes examenes={parciales} />
+                                </div>
+                            ),
+                    )}
+                </div>
+            )
+        }
+        {
+            otros.length > 0 && (
+                <div>
+                    <h2 class="mb-2 border-b border-white pb-2 text-2xl">Otros Documentos</h2>
+                    <TableExamenes examenes={otros} />
+                </div>
+            )
+        }
+    </div>
+    <br />
+</Layout>

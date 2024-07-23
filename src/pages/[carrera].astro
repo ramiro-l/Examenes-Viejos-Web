@@ -1,0 +1,71 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Badge } from "@/components/ui/badge";
+import { Icon } from "astro-icon/components";
+import TablaMaterias from "@/components/TableMaterias.astro";
+
+import carreras from "@/data/carreras.json";
+import materias from "@/data/materias.json";
+import type { Materia } from "@/models/materia";
+import type { Carrera } from "@/models/carrera";
+
+interface paramsType {
+    params: {
+        carrera: string;
+    };
+    props: {
+        carrera: Carrera;
+    };
+}
+
+export function getStaticPaths() {
+    const params: paramsType[] = [];
+    const carreras_data = carreras as Carrera[];
+    for (let i = 0; i < carreras_data.length; i++) {
+        const carrera = carreras_data[i];
+        params.push({
+            params: {
+                carrera: carrera.code,
+            },
+            props: {
+                carrera: carrera,
+            },
+        });
+    }
+    return params;
+}
+
+const { carrera } = Astro.props;
+
+const materias_data = materias as Materia[];
+const materias_carrera = materias_data.filter((m) => m.carreras.includes(carrera.code));
+---
+
+<Layout
+    title={`Examenes Viejos | ${carrera.name}`}
+    metaImage=""
+    metaDescription="Esta pagina es una interfaz para ver los examenes viejos del repositorio de github"
+    metaKeywords="examenes, viejos, famaf, computacion"
+>
+    <h1 class="text-4xl">{carrera.name}</h1>
+
+    <div class="my-2">
+        <a href={carrera.repo_examenes} target="_blank" rel="noopener noreferrer">
+            <Badge className="my-1"
+                >Repositorio
+                <Icon name="carbon:logo-github" size={16} class="ml-2" />
+            </Badge>
+        </a>
+        <a href={carrera.web} target="_blank" rel="noopener noreferrer">
+            <Badge className="my-1"
+                >Web
+                <Icon name="carbon:wikis" size={16} class="ml-2" />
+            </Badge>
+        </a>
+        <Badge className="my-1" variant="outline">{carrera.facultad}</Badge>
+        <Badge className="my-1" variant="outline">{carrera.duracion} años</Badge>
+    </div>
+    <p class="my-5 text-2xl">Materias:</p>
+    <TablaMaterias carrera={carrera} materias={materias_carrera} />
+    <br />
+</Layout>

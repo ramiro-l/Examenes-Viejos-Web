@@ -1,90 +1,36 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
+import { Icon } from "astro-icon/components";
+import type { Carrera } from "@/models/carrera";
+import carreras from "@/data/carreras.json";
+import CardCarreras from "@/components/CardCarrera.astro";
+
+const carrera_data: Carrera[] = carreras as Carrera[];
 ---
 
-<Layout title="Examenes Viejos">
-    <main>
-        <h1>
-            Bienvenido a <br />
-            <span class="text-gradient">Examenes Viejos</span>
-        </h1>
-        <p class="instructions">
-            Un grupo de <strong>alumnos de la Universidad</strong> desea crear una plataforma web para
-            <strong>facilitar el acceso a exámenes antiguos</strong> almacenados en formato PDF e imágenes
-            en un repositorio de <code>Git</code>.
-        </p>
-        <ul role="list" class="link-card-grid">
-            <Card
+<Layout
+    title="Examenes Viejos"
+    metaImage=""
+    metaDescription="Esta pagina es una interfaz para ver los examenes viejos del repositorio de github"
+    metaKeywords="examenes, viejos, famaf, computacion"
+    isNavbarVisible={false}
+>
+    <main class="flex h-[50vh] flex-col place-items-center justify-center">
+        <Icon name="carbon:attachment" size={82} class="mb-5" />
+        <h1 class="text-center text-4xl font-black max-md:text-3xl">Examenes Viejos | FaMAF</h1>
+        <p class="max-w-[90vw] text-center max-sm:text-sm max-[420px]:text-justify">
+            Esta pagina es una interfaz para ver los examenes viejos del repositorio de <strong
+                >github</strong
+            >
+            <a
                 href="https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos-FaMAF-Computacion"
-                title="Repositorio de Examenes Viejos"
-                body="El lugar de donde extraemos los examenes viejos, es un repositorio de github."
-            />
-        </ul>
-        <p class="p-5 text-justify text-gray-400">
-            El propósito principal es proporcionar una interfaz gráfica que permita a los
-            estudiantes acceder, visualizar y organizar estos documentos. Además, se busca
-            simplificar el proceso de colaboración para que los alumnos puedan contribuir con nuevos
-            documentos sin necesidad de conocimientos técnicos en Git o GitHub.
+                target="_blank"
+                class="text-center font-medium underline max-md:text-sm"
+                >ExamenesViejos-FaMAF-Computacion</a
+            >
         </p>
     </main>
+    <div class="columns-2 px-5 max-xl:columns-1">
+        {carrera_data.map((carrera) => <CardCarreras carrera={carrera} />)}
+    </div>
 </Layout>
-
-<style>
-    main {
-        margin: auto;
-        padding: 1rem;
-        width: 800px;
-        max-width: calc(100% - 2rem);
-        color: white;
-        font-size: 20px;
-        line-height: 1.6;
-    }
-    .astro-a {
-        position: absolute;
-        top: -32px;
-        left: 50%;
-        transform: translatex(-50%);
-        width: 220px;
-        height: auto;
-        z-index: -1;
-    }
-    h1 {
-        font-size: 4rem;
-        font-weight: 700;
-        line-height: 1;
-        text-align: center;
-        margin-bottom: 1em;
-    }
-    .text-gradient {
-        background-image: var(--accent-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-size: 400%;
-        background-position: 0%;
-    }
-    .instructions {
-        margin-bottom: 2rem;
-        border: 1px solid rgba(var(--accent-light), 25%);
-        background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
-        padding: 1.5rem;
-        border-radius: 8px;
-    }
-    .instructions code {
-        font-size: 0.8em;
-        font-weight: bold;
-        background: rgba(var(--accent-light), 12%);
-        color: rgb(var(--accent-light));
-        border-radius: 4px;
-        padding: 0.3em 0.4em;
-    }
-    .instructions strong {
-        color: rgb(var(--accent-light));
-    }
-    .link-card-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-        gap: 2rem;
-        padding: 0;
-    }
-</style>
