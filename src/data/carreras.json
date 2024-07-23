@@ -1,0 +1,18 @@
+[
+    {
+        "name": "Licenciatura en Ciencias de la Computación",
+        "code": "lcc",
+        "facultad": "FaMAF",
+        "duracion": 5,
+        "web": "https://www.famaf.unc.edu.ar/academica/grado/licenciatura-en-ciencias-de-la-computaci%C3%B3n/",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos-FaMAF-Computacion"
+    },
+    {
+        "name": "Analista en Computación",
+        "code": "ac",
+        "facultad": "FaMAF",
+        "duracion": 3,
+        "web": "https://www.famaf.unc.edu.ar/academica/grado/analista-en-computaci%C3%B3n/",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos-FaMAF-Computacion"
+    }
+]

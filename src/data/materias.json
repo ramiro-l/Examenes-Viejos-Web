@@ -1,0 +1,222 @@
+[
+    {
+        "name": "Álgebra",
+        "code": "algebra",
+        "carreras": ["lcc", "ac"],
+        "cuatrimestre": 2,
+        "anio": 1,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_Algebra_FaMAF/"
+    },
+    {
+        "name": "Introducción a los algoritmos",
+        "code": "introduccion-a-los-algoritmos",
+        "carreras": ["lcc", "ac"],
+        "cuatrimestre": 1,
+        "anio": 1,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_IntroduccionALosAlgoritmos_FaMAF"
+    },
+    {
+        "name": "Análisis matemático 1",
+        "code": "analisis-matematico",
+        "carreras": ["lcc", "ac"],
+        "cuatrimestre": 1,
+        "anio": 1,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_AnalisisMatematico1_Computacion_FaMAF"
+    },
+    {
+        "name": "Análisis matemático 2",
+        "code": "analisis-matematico-2",
+        "carreras": ["lcc", "ac"],
+        "cuatrimestre": 2,
+        "anio": 1,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_AnalisisMatematico2_Computacion_FaMAF"
+    },
+    {
+        "name": "Matemática discreta 1",
+        "code": "matematica-discreta-1",
+        "carreras": ["lcc", "ac"],
+        "cuatrimestre": 1,
+        "anio": 1,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_MatematicaDiscreta1_FaMAF"
+    },
+    {
+        "name": "Algoritmos y estructuras de datos 1",
+        "code": "algoritmos-y-estructuras-de-datos-1",
+        "carreras": ["lcc", "ac"],
+        "cuatrimestre": 2,
+        "anio": 1,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_AlgoritmosYEstructurasDeDatos1_FaMAF",
+        "path": "Pr%C3%A1ctico"
+    },
+    {
+        "name": "Algoritmos y estructuras de datos 2",
+        "code": "algoritmos-y-estructuras-de-datos-2",
+        "carreras": ["lcc", "ac"],
+        "cuatrimestre": 1,
+        "anio": 2,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_AlgoritmosYEstructurasDeDatos2_FaMAF",
+        "path": "Pr%C3%A1ctico"
+    },
+    {
+        "name": "Análisis numérico",
+        "code": "analisis-numerico",
+        "carreras": ["lcc", "ac"],
+        "cuatrimestre": 1,
+        "anio": 2,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_AnalisisNumerico_FaMAF",
+        "path": "Teórico%20-%20práctico"
+    },
+    {
+        "name": "Organización del computador",
+        "code": "organizacion-del-computador",
+        "carreras": ["lcc", "ac"],
+        "cuatrimestre": 1,
+        "anio": 2,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_OrganizacionDelComputador_FaMAF"
+    },
+    {
+        "name": "Introducción a la lógica y a la computación",
+        "code": "introduccion-a-la-logica-y-a-la-computacion",
+        "carreras": ["lcc", "ac"],
+        "cuatrimestre": 2,
+        "anio": 2,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_IntroduccionALaLogicaYALaComputacion_FaMAF"
+    },
+    {
+        "name": "Probabilidad y estadística",
+        "code": "probabilidad-y-estadistica",
+        "carreras": ["lcc", "ac"],
+        "cuatrimestre": 2,
+        "anio": 2,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_ProbabilidadyEstadistica_FaMAF"
+    },
+    {
+        "name": "Sistemas operativos",
+        "code": "sistemas-operativos",
+        "carreras": ["lcc", "ac"],
+        "cuatrimestre": 2,
+        "anio": 2,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_SistemasOperativos_FaMAF"
+    },
+    {
+        "name": "Matemática discreta 2",
+        "code": "matematica-discreta-2",
+        "carreras": ["lcc", "ac"],
+        "cuatrimestre": 1,
+        "anio": 3,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_MatematicaDiscreta2_FaMAF"
+    },
+    {
+        "name": "Paradigmas de programación",
+        "code": "paradigmas-de-programacion",
+        "carreras": ["lcc", "ac"],
+        "cuatrimestre": 1,
+        "anio": 3,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_ParadigmasDeProgramacion_FaMAF"
+    },
+    {
+        "name": "Redes y sistemas distribuidos",
+        "code": "redes-y-sistemas-distribuidos",
+        "carreras": ["lcc", "ac"],
+        "cuatrimestre": 1,
+        "anio": 3,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_RedesYSistemasDistribuidos_FaMAF"
+    },
+    {
+        "name": "Arquitectura de computadoras",
+        "code": "arquitectura-de-computadoras",
+        "carreras": ["lcc", "ac"],
+        "cuatrimestre": 2,
+        "anio": 3,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_ArquitecturaDeComputadoras_FaMAF"
+    },
+    {
+        "name": "Bases de datos",
+        "code": "bases-de-datos",
+        "carreras": ["lcc", "ac"],
+        "cuatrimestre": 2,
+        "anio": 3,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_BasesDeDatos_FaMAF",
+        "path": "Teórico%20-%20práctico"
+    },
+    {
+        "name": "Ingeniería del software 1",
+        "code": "ingenieria-del-software-1",
+        "carreras": ["lcc", "ac"],
+        "cuatrimestre": 2,
+        "anio": 3,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_Ingenier-aDelSoftware1_FaMAF"
+    },
+    {
+        "name": "Lenguajes formales y computabilidad",
+        "code": "lenguajes-formales-y-computabilidad",
+        "carreras": ["lcc"],
+        "cuatrimestre": 1,
+        "anio": 4,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_LenguajesFormalesYComputabilidad_FaMAF"
+    },
+    {
+        "name": "Modelos y simulación",
+        "code": "modelos-y-simulacion",
+        "carreras": ["lcc"],
+        "cuatrimestre": 1,
+        "anio": 4,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_ModelosYSimulacion_FaMAF"
+    },
+    {
+        "name": "Física",
+        "code": "fisica",
+        "carreras": ["lcc"],
+        "cuatrimestre": 2,
+        "anio": 4,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_Fisica_FaMAF"
+    },
+    {
+        "name": "Lógica",
+        "code": "logica",
+        "carreras": ["lcc"],
+        "cuatrimestre": 2,
+        "anio": 4,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_Logica_FaMAF"
+    },
+    {
+        "name": "Ingeniería del software 2",
+        "code": "ingenieria-del-software-2",
+        "carreras": ["lcc"],
+        "cuatrimestre": 1,
+        "anio": 5,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_IngenieriaDelSoftware2_FaMAF"
+    },
+    {
+        "name": "Lenguajes y compiladores",
+        "code": "lenguajes-y-compiladores",
+        "carreras": ["lcc"],
+        "cuatrimestre": 1,
+        "anio": 5,
+        "web": "",
+        "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_LenguajesYCompiladores_FaMAF"
+    }
+]
