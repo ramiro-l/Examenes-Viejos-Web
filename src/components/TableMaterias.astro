@@ -16,12 +16,12 @@ const { carrera, materias } = Astro.props;
 const cant_anios = materias.reduce((max, materia) => Math.max(max, materia.anio), 0);
 const cant_cuatrimestres = materias.reduce(
     (max, materia) => Math.max(max, materia.cuatrimestre),
-    0
+    0,
 );
 
 // Inicializar el arreglo multidimensional
 const materias_ordenadas: Materia[][][] = Array.from({ length: cant_anios }, () =>
-    Array.from({ length: cant_cuatrimestres }, () => [])
+    Array.from({ length: cant_cuatrimestres }, () => []),
 );
 
 // Llenar el arreglo multidimensional

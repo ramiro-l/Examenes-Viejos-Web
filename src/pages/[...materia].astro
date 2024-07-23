@@ -85,7 +85,7 @@ const otros: Examen[] = materiaRepository.exams.filter((examen) => examen.type =
 
 const cant_parciales = parciales.reduce(
     (max, examen) => Math.max(max, examen.number && examen.number <= 10 ? examen.number : 1),
-    1
+    1,
 );
 
 const parciales_for_number: Examen[][] = Array.from({ length: cant_parciales }, () => []);
@@ -146,7 +146,7 @@ parciales.forEach((parcial) => {
                                     </h2>
                                     <TableExamenes examenes={parciales} />
                                 </div>
-                            )
+                            ),
                     )}
                 </div>
             )
