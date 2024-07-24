@@ -1,6 +1,7 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 import Navbar from "@/components/sections/Navbar.astro";
+import Footer from "@/components/sections/Footer.astro";
 import "@/styles/globals.css";
 
 interface Props {
@@ -9,9 +10,17 @@ interface Props {
     metaDescription: string;
     metaKeywords: string;
     isNavbarVisible?: boolean;
+    isFooterVisible?: boolean;
 }
 
-const { title, metaImage, metaDescription, metaKeywords, isNavbarVisible = true } = Astro.props;
+const {
+    title,
+    metaImage,
+    metaDescription,
+    metaKeywords,
+    isNavbarVisible = true,
+    isFooterVisible = true,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -38,5 +47,6 @@ const { title, metaImage, metaDescription, metaKeywords, isNavbarVisible = true 
     <body class="dark px-20 pt-5 max-lg:p-5 max-sm:p-4">
         {isNavbarVisible && <Navbar />}
         <slot />
+        {isFooterVisible && <Footer />}
     </body>
 </html>
