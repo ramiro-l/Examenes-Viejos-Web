@@ -1,0 +1,20 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Button } from "@/components/ui/button";
+---
+
+<Layout
+    title={`Pagina no encontrada`}
+    metaImage=""
+    metaDescription="Pagina no encontrada"
+    metaKeywords="404, not found"
+    isFooterVisible={false}
+>
+    <div class="flex h-[80vh] flex-col place-items-center justify-center">
+        <h1 class="text-6xl font-bold">404</h1>
+        <p class="text-lg">Pagina no encontrada.</p>
+        <a href="/" class="mt-5">
+            <Button variant="outline">Volver al inicio</Button>
+        </a>
+    </div>
+</Layout>
