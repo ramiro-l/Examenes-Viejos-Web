@@ -1,0 +1,18 @@
+name: Daily Build and Deploy
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Ejecutar a las 00:00 UTC cada día
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v3
+
+      - name: Trigger Cloudflare Build
+        run: |
+          curl -X POST "${{ secrets.CLOUDFLARE_BUILD_API }}" \
+          -H "Content-Type: application/json"
