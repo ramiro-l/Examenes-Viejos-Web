@@ -3,11 +3,15 @@ import { Icon } from "astro-icon/components";
 ---
 
 <div>
-    <p class="my-10 text-center">
+    <p class="my-10 text-center text-slate-500 max-sm:text-sm">
         Podés contribuir a este proyecto{" "}
-        <a class="underline" target="_blank" href="https://github.com/ramiro-l/Examenes-Viejos-Web">
+        <a
+            class="text-nowrap underline"
+            target="_blank"
+            href="https://github.com/ramiro-l/Examenes-Viejos-Web"
+        >
             en este repositorio
+            <Icon name="carbon:logo-github" class="-mt-0.5 inline-block h-4 w-4" />
         </a>
-        <Icon name="carbon:logo-github" class="-mt-0.5 inline-block h-4 w-4" />
     </p>
 </div>
