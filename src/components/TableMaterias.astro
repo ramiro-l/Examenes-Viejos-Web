@@ -53,13 +53,13 @@ const parse_curtimestre_number_to_text = (cuatrimestre: number) => {
         {
             materias_ordenadas.map((materias_anio, anio) => (
                 <TableRow className=" max-md:hover:bg-transparent">
-                    <TableCell className="text-left align-text-top font-extrabold max-sm:pl-2 pr-1">
+                    <TableCell className="text-left align-text-top font-extrabold max-sm:pl-2 pr-1 text-nowrap">
                         {anio + 1}º año
                     </TableCell>
                     <TableCell className="grid grid-cols-2 max-md:grid-cols-1 max-sm:px-1">
                         {materias_anio.map((materias_cuatrimestre, cuatrimestre) => (
                             <div class="w-fit text-left align-text-top max-md:mb-6">
-                                <div class="mb-2 ml-3">
+                                <div class="mb-2 ml-3 font-extrabold">
                                     {parse_curtimestre_number_to_text(cuatrimestre + 1)}{" "}
                                     Cuatrimestre
                                 </div>
@@ -68,7 +68,7 @@ const parse_curtimestre_number_to_text = (cuatrimestre: number) => {
                                         <a href={`/${carrera.code}/${materia.code}`}>
                                             <Button
                                                 variant="link"
-                                                className=" uppercase text-wrap text-left"
+                                                className=" uppercase text-wrap text-left font-normal"
                                             >
                                                 {materia.name}
                                             </Button>

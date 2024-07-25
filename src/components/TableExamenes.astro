@@ -38,7 +38,9 @@ const { examenes } = Astro.props;
                             <Icon name="carbon:image" size={20} />
                         )}
                     </TableCell>
-                    <TableCell className=" font-extrabold">{examen.date}</TableCell>
+                    <TableCell className=" font-extrabold text-nowrap max-[340px]:text-xs">
+                        {examen.date}
+                    </TableCell>
                     <TableCell className=" max-sm:text-xs">{examen.file_name}</TableCell>
                     <TableCell className="flex justify-end">
                         <div class="flex max-w-[500px] justify-end text-right">
