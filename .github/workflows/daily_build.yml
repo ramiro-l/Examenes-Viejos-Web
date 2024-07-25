@@ -11,8 +11,6 @@ jobs:
 
     steps:
       - name: Trigger Cloudflare Build
-        env:
-          CLOUDFLARE_BUILD_API: ${{ secrets.CLOUDFLARE.CLOUDFLARE_BUILD_API }}
         run: |
-          curl -X POST "$CLOUDFLARE_BUILD_API" \
+          curl -X POST "${{ secrets.CLOUDFLARE_BUILD_API }}" \
           -H "Content-Type: application/json"
