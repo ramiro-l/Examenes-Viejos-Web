@@ -73,7 +73,10 @@ Ingresa al directorio del proyecto `cd Examenes-Viejos-Web` y ejecuta el siguien
 pnpm install
 ```
 
-Para ejecutar la aplicación en modo de desarrollo:
+Esto **es opcional** pero puedes configurar las variables de entorno en un archivo `.env` en la raíz del proyecto. Puedes copiar el archivo `.env.example` y renombrarlo a `.env` para configurar las variables de entorno.
+Especiamente la variable `GITHUB_ACCESS_TOKEN` que es necesaria para realizar las consultas a la API de GitHub. Si no se configura, **no pasa nada**, se utilizan respuestas de prueba que estan en `./src/services/examenes/examples-fetch`.
+
+Finalmente para ejecutar la aplicación en modo de desarrollo:
 
 ```bash
 pnpm dev
