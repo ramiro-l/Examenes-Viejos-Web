@@ -9,9 +9,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out the repository
-        uses: actions/checkout@v3
-
       - name: Trigger Cloudflare Build
         run: |
           curl -X POST "${{ secrets.CLOUDFLARE_BUILD_API }}" \
