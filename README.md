@@ -17,7 +17,7 @@ Si deseas contribuir con código, por favor:
 4. Crea tu Rama de Funcionalidad:
    `git checkout -b feature/CaracteristicaIncreible`
 5. Realiza tus cambios y seguí las [convenciones para los commits](#formato-de-los-commits-📝).
-6. Asegúrate de seguir las **directrices de estilo** existentes.
+6. Asegúrate de seguir las [guías de estilo pra el código](#formato-del-código-🎨).
 7. Haz Push a la Rama:
    `git push origin feature/CaracteristicaIncreible`
 8. Abre una [_pull request_](https://github.com/ramiro-l/Examenes-Viejos-Web/pulls) con una descripción detallada de los cambios propuestos y referencia al problema relacionado.
@@ -58,6 +58,16 @@ feat(login): add email validation
 
 Para obtener más información sobre Commits Convencionales, consulta la [web oficial](https://www.conventionalcommits.org/es/v1.0.0/).  
 Aquí tienes [Conventional Commits para VSCode](https://marketplace.visualstudio.com/items?itemName=vivaxy.vscode-conventional-commits).
+
+## Formato del Código 🎨
+
+Este proyecto utiliza [Prettier](https://prettier.io/) para mantener un estilo de código consistente.
+
+Para formatear el código, ejecuta el siguiente comando:
+
+```bash
+pnpm run format
+```
 
 ## Instalación y Ejecución 🛠️
 
