@@ -1,16 +1,16 @@
 name: Daily Build and Deploy
 
 on:
-  schedule:
-    - cron: '0 0 * * *'
-  workflow_dispatch:
+    schedule:
+        - cron: "0 0 * * *"
+    workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Trigger Cloudflare Build
-        run: |
-          curl -X POST "${{ secrets.CLOUDFLARE_BUILD_API }}" \
-          -H "Content-Type: application/json"
+        steps:
+            - name: Trigger Cloudflare Build
+              run: |
+                  curl -X POST "${{ secrets.CLOUDFLARE_BUILD_API }}" \
+                  -H "Content-Type: application/json"
