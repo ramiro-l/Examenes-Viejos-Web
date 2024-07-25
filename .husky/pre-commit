@@ -1,9 +1,7 @@
 #!/bin/sh
 
-# Verificar el formato del código
+# Format code
 if ! pnpm check-format; then
     echo "ERROR: Tu código no respeta las convenciones de formato. Vamos a hacerlo ..."
     pnpm run format
 fi
-
-

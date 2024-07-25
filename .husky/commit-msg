@@ -1,9 +1,20 @@
 #!/bin/sh
-if ! head -1 "$1" | grep -qE "^(feat|fix|chore|docs|test|style|refactor|perf|build|ci|revert)(\(.+?\))?: .{1,}$"; then
+
+commit_message=$(head -1 "$1")
+
+ignore_patterns="^Merge|^Rebase|^cherry-pick:|^Squash commit of the following:"
+
+if echo "$commit_message" | grep -qE "$ignore_patterns"; then
+    exit 0
+fi
+
+# 'Conventional Commits'
+if ! echo "$commit_message" | grep -qE "^(feat|fix|chore|docs|test|style|refactor|perf|build|ci|revert)(\(.+?\))?: .{1,}$"; then
     echo "ERROR: El mensaje de su commit no respeta las reglas de 'Conventional Commits'." >&2
     exit 1
 fi
-if ! head -1 "$1" | grep -qE "^.{1,88}$"; then
+
+if ! echo "$commit_message" | grep -qE "^.{1,88}$"; then
     echo "ERROR: El título del mensaje en su commit es muy largo. Puede agregar una descripción." >&2
     exit 1
 fi
