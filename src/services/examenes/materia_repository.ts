@@ -7,7 +7,9 @@ import { isValidExamenType } from "@/models/examen";
 import { githubPdfViewer } from "../viewer";
 import { parserGithubRepositoryUrlToOwnerAndRepo } from "../github/repository";
 
-export default class MateriaRepository extends GithubRepository implements IMateriaRepository {
+const QUOTE_BY_NUMBER_ERROR = 10;
+
+export class MateriaRepository extends GithubRepository implements IMateriaRepository {
     exams: Examen[] = [];
     private isTest: boolean;
 
@@ -118,5 +120,71 @@ export default class MateriaRepository extends GithubRepository implements IMate
             number: number,
             file_type: file_type || "",
         };
+    }
+
+    /** Sort the exams by date. in format YYYY-MM-DD and "sin fecha".
+     *  The biggest date is first and the "sin fecha" is last. */
+    public sortExamsByDate() {
+        this.exams.sort((a, b) => {
+            if (a.date === "sin fecha") {
+                return 1;
+            }
+            if (b.date === "sin fecha") {
+                return -1;
+            }
+            return b.date.localeCompare(a.date);
+        });
+    }
+
+    public getExamsByType(type: ExamenType): Examen[] {
+        return this.exams.filter((exam) => exam.type === type);
+    }
+
+    // In index 0 use for the weird numbers, recomended use of type "Otro".
+    public getExamsParcialesForNumber(): Examen[][] {
+        const parciales = this.getExamsByType("Parcial");
+        const max_number = this.getMaxNumberExamByType("Parcial");
+        const parciales_by_number: Examen[][] = Array.from({ length: max_number + 1 }, () => []);
+
+        parciales.forEach((parcial) => {
+            if (parcial.number && parcial.number <= QUOTE_BY_NUMBER_ERROR) {
+                parciales_by_number[parcial.number].push(parcial);
+            } else {
+                parciales_by_number[0].push(parcial);
+            }
+        });
+
+        return parciales_by_number;
+    }
+
+    // Get the max number of parcial. The number must be less than QUOTE_BY_NUMBER_ERROR.
+    private getMaxNumberExamByType(type: ExamenType): number {
+        const exams = this.getExamsByType(type);
+        if (exams.length === 0) {
+            return 0;
+        }
+        return exams.reduce(
+            (max, examen) =>
+                Math.max(
+                    max,
+                    examen.number && examen.number <= QUOTE_BY_NUMBER_ERROR ? examen.number : 1,
+                ),
+            1,
+        );
+    }
+}
+
+export function parse_curtimestre_number_to_text(cuatrimestre: number): String {
+    switch (cuatrimestre) {
+        case 1:
+            return "Primer";
+        case 2:
+            return "Segundo";
+        case 3:
+            return "Tercer";
+        case 4:
+            return "Cuarto";
+        default:
+            return "Desconocido";
     }
 }
