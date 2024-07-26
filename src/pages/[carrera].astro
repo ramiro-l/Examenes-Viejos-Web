@@ -5,9 +5,11 @@ import { Icon } from "astro-icon/components";
 import TablaMaterias from "@/components/TableMaterias.astro";
 
 import carreras from "@/data/carreras.json";
+import type { Carrera } from "@/models/carrera";
+
 import materias from "@/data/materias.json";
 import type { Materia } from "@/models/materia";
-import type { Carrera } from "@/models/carrera";
+import { materias_only_for_the_carrera } from "@/lib/materias";
 
 interface paramsType {
     params: {
@@ -18,6 +20,7 @@ interface paramsType {
     };
 }
 
+// Create the static paths for the carreras:
 export function getStaticPaths() {
     const params: paramsType[] = [];
     const carreras_data = carreras as Carrera[];
@@ -37,8 +40,9 @@ export function getStaticPaths() {
 
 const { carrera } = Astro.props;
 
+// Load materias data only for the carrera:
 const materias_data = materias as Materia[];
-const materias_carrera = materias_data.filter((m) => m.carreras.includes(carrera.code));
+const materias_carrera = materias_only_for_the_carrera(carrera.code, materias_data);
 ---
 
 <Layout

@@ -3,7 +3,9 @@ import { Table, TableBody, TableCaption, TableCell, TableRow } from "@/component
 import { Button } from "./ui/button";
 
 import type { Carrera } from "@/models/carrera";
-import type { Materia } from "@/models/materia";
+import { type Materia } from "@/models/materia";
+import { organizeMaterias } from "@/lib/materias";
+import { parse_curtimestre_number_to_text } from "@/services/examenes/materia_repository";
 
 interface Props {
     carrera: Carrera;
@@ -12,39 +14,7 @@ interface Props {
 
 const { carrera, materias } = Astro.props;
 
-// Determinar la cantidad máxima de años y cuatrimestres
-const cant_anios = materias.reduce((max, materia) => Math.max(max, materia.anio), 0);
-const cant_cuatrimestres = materias.reduce(
-    (max, materia) => Math.max(max, materia.cuatrimestre),
-    0,
-);
-
-// Inicializar el arreglo multidimensional
-const materias_ordenadas: Materia[][][] = Array.from({ length: cant_anios }, () =>
-    Array.from({ length: cant_cuatrimestres }, () => []),
-);
-
-// Llenar el arreglo multidimensional
-materias.forEach((materia) => {
-    const anioIndex = materia.anio - 1;
-    const cuatrimestreIndex = materia.cuatrimestre - 1;
-    materias_ordenadas[anioIndex][cuatrimestreIndex].push(materia);
-});
-
-const parse_curtimestre_number_to_text = (cuatrimestre: number) => {
-    switch (cuatrimestre) {
-        case 1:
-            return "Primer";
-        case 2:
-            return "Segundo";
-        case 3:
-            return "Tercer";
-        case 4:
-            return "Cuarto";
-        default:
-            return "Desconocido";
-    }
-};
+const materias_ordenadas: Materia[][][] = organizeMaterias(materias);
 ---
 
 <Table>
