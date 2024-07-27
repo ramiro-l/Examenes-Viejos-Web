@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://examenes-viejos.pages.dev/sitemap-index.xml
