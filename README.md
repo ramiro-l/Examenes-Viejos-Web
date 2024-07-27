@@ -1,7 +1,5 @@
 ![Banner](https://github.com/user-attachments/assets/648237ff-ab5a-444b-aee4-832829f0ed57)
 
-# Interfaz Gráfica para Exámenes de la Universidad 📎
-
 Una plataforma web para facilitar el acceso a exámenes antiguos almacenados en formato PDF e imágenes en un repositorio de GitHub [ExamenesViejos-FaMAF-Computacion](https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos-FaMAF-Computacion).
 
 ## Sitio web 🌐
