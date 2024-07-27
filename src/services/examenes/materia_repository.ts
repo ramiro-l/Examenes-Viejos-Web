@@ -6,6 +6,9 @@ import type { Examen, ExamenType } from "@/models/examen";
 import { isValidExamenType } from "@/models/examen";
 import { githubPdfViewer } from "../viewer";
 import { parserGithubRepositoryUrlToOwnerAndRepo } from "../github/repository";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const QUOTE_BY_NUMBER_ERROR = 10;
 
@@ -20,7 +23,7 @@ export class MateriaRepository extends GithubRepository implements IMateriaRepos
     }
 
     async fetchContent() {
-        if (this.isTest) {
+        if (this.isTest || !process.env.GITHUB_ACCESS_TOKEN) {
             this.content = TEST_FECTHED_MATERIA;
         } else {
             await super.fetchContent();
