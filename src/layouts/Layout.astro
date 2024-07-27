@@ -11,6 +11,7 @@ interface Props {
     metaKeywords: string;
     isNavbarVisible?: boolean;
     isFooterVisible?: boolean;
+    isMainPage?: boolean;
 }
 
 const {
@@ -20,6 +21,7 @@ const {
     metaKeywords,
     isNavbarVisible = true,
     isFooterVisible = true,
+    isMainPage = false,
 } = Astro.props;
 ---
 
@@ -45,6 +47,14 @@ const {
         <meta property="og:type" content="website" />
         <meta name="description" content={metaDescription} />
         <meta name="keywords" content={metaKeywords} />
+        {
+            isMainPage && (
+                <meta
+                    name="google-site-verification"
+                    content="2CCe4D6d14HrwjQ5nAUkeNnNJ7nTfRar8MpRucJoo0k"
+                />
+            )
+        }
         <ViewTransitions />
     </head>
     <body class="dark px-20 pt-5 max-lg:p-5 max-sm:p-4">
