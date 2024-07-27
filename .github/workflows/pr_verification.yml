@@ -25,5 +25,8 @@ jobs:
             - name: Run Format Check
               run: pnpm check-format
 
+            - name: Add .env file
+              run: echo "GITHUB_ACCESS_TOKEN={{ secrets.GITHUB_TOKEN }}" > .env
+
             - name: Build and Check
               run: pnpm build
