@@ -1,0 +1,29 @@
+name: PR Verification
+
+on:
+    pull_request:
+
+jobs:
+    verify:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v3
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "20"
+
+            - name: Setup pnpm
+              run: npm install -g pnpm
+
+            - name: Install Dependencies
+              run: pnpm install
+
+            - name: Run Format Check
+              run: pnpm check-format
+
+            - name: Build and Check
+              run: pnpm build
