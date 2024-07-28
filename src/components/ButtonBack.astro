@@ -1,0 +1,18 @@
+---
+import { Icon } from "astro-icon/components";
+import { Button } from "./ui/button";
+
+interface Props {
+    activeIcon?: boolean;
+    text?: string;
+}
+
+const { activeIcon = true, text } = Astro.props;
+---
+
+<a onclick="history.back()" class="max-md:scale-75">
+    <Button className="px-2 py-0" variant="outline">
+        {activeIcon && <Icon name="carbon:arrow-left" size={20} />}
+        {text}
+    </Button>
+</a>

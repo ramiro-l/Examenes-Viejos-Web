@@ -18,7 +18,7 @@ interface Props {
 const { examenes } = Astro.props;
 ---
 
-<Table className="mb-10">
+<Table className="my-2">
     <TableHeader>
         <TableRow
             ><TableHead className="max-sm:hidden">Tipo</TableHead>
@@ -38,7 +38,7 @@ const { examenes } = Astro.props;
                             <Icon name="carbon:image" size={20} />
                         )}
                     </TableCell>
-                    <TableCell className=" font-extrabold text-nowrap max-[340px]:text-xs">
+                    <TableCell className=" font-extrabold text-nowrap max-[340px]:text-xs uppercase">
                         {examen.date}
                     </TableCell>
                     <TableCell className=" max-sm:text-xs">{examen.file_name}</TableCell>
