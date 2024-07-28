@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { Badge } from "@/components/ui/badge";
-import TableExamenes from "@/components/TableExamenes.astro";
+import TabsExamenes from "@/components/TabsExamenes.astro";
 import { Icon } from "astro-icon/components";
 
 import {
@@ -64,6 +64,18 @@ const parciales: Examen[][] = materiaRepository.getExamsParcialesForNumber();
 const otros: Examen[] = materiaRepository.getExamsByType("Otro");
 otros.concat(parciales[0]); // In this position are the parciales without or weird numbers.
 parciales.shift();
+
+const tabs = [{ title: "Finales", key: "finales", examenes: finales, shorTitle: "FINALES" }];
+
+tabs.push(
+    ...parciales.map((parciales, index) => ({
+        title: `Parcial ${index + 1}`,
+        key: `parcial-${index + 1}`,
+        examenes: parciales,
+        shorTitle: `P${index + 1}`,
+    })),
+);
+tabs.push({ title: "Otros", key: "otros", examenes: otros, shorTitle: "OTROS" });
 ---
 
 <Layout
@@ -72,7 +84,7 @@ parciales.shift();
     metaDescription="Esta pagina es una interfaz para ver los examenes viejos del repositorio de github"
     metaKeywords="examenes, viejos, famaf, computacion"
 >
-    <h1 class="text-4xl">{materia.name}</h1>
+    <h1 class="text-balance text-4xl">{materia.name}</h1>
 
     <div class="my-2 max-sm:flex max-sm:flex-col">
         <a href={materia.repo_examenes} target="_blank" rel="noopener noreferrer">
@@ -82,50 +94,13 @@ parciales.shift();
             </Badge>
         </a>
         <Badge className="my-1 max-sm:w-full" variant="outline">{carrera.facultad}</Badge>
-        <a href={`/${carrera.code}`}>
-            <Badge className="my-1 max-sm:w-full" variant="outline">{carrera.name} </Badge>
-        </a>
-
+        <Badge className="my-1 max-sm:w-full" variant="outline">{carrera.name} </Badge>
         <Badge className="my-1 max-sm:w-full" variant="outline">{materia.anio}º año</Badge>
         <Badge className="my-1 max-sm:w-full" variant="outline"
             >{parse_curtimestre_number_to_text(materia.cuatrimestre)} cuatrimestre</Badge
         >
     </div>
     <br />
-    <div class="flex flex-col flex-wrap">
-        {
-            finales.length > 0 && (
-                <div>
-                    <h2 class="mb-2 border-b border-white pb-2 text-2xl">Finales</h2>
-                    <TableExamenes examenes={finales} />
-                </div>
-            )
-        }
-        {
-            parciales.length > 0 && (
-                <div>
-                    {parciales.map(
-                        (parciales, index) =>
-                            parciales.length > 0 && (
-                                <div>
-                                    <h2 class="mb-2 border-b border-white pb-2 text-2xl">
-                                        Parcial {index + 1}
-                                    </h2>
-                                    <TableExamenes examenes={parciales} />
-                                </div>
-                            ),
-                    )}
-                </div>
-            )
-        }
-        {
-            otros.length > 0 && (
-                <div>
-                    <h2 class="mb-2 border-b border-white pb-2 text-2xl">Otros Documentos</h2>
-                    <TableExamenes examenes={otros} />
-                </div>
-            )
-        }
-    </div>
+    <TabsExamenes tabs={tabs} />
     <br />
 </Layout>

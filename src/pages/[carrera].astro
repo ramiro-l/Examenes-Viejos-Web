@@ -69,7 +69,8 @@ const materias_carrera = materias_only_for_the_carrera(carrera.code, materias_da
         <Badge className="my-1" variant="outline">{carrera.facultad}</Badge>
         <Badge className="my-1" variant="outline">{carrera.duracion} años</Badge>
     </div>
-    <p class="my-5 text-2xl">Materias:</p>
+    <br />
+    <p class="mb-5 text-2xl">Materias:</p>
     <TablaMaterias carrera={carrera} materias={materias_carrera} />
     <br />
 </Layout>

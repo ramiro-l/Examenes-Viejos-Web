@@ -1,0 +1,122 @@
+---
+import { type Examen } from "@/models/examen";
+import { Button } from "@/components/ui/button";
+import TableExamenes from "./TableExamenes.astro";
+import { Icon } from "astro-icon/components";
+
+interface TabExamenes {
+    key: string;
+    title: string;
+    shorTitle: string;
+    examenes: Examen[];
+}
+
+interface Props {
+    tabs: TabExamenes[];
+}
+
+const { tabs } = Astro.props;
+const activeTabKey = tabs[0]?.key;
+---
+
+<div>
+    <div class="flex place-items-center justify-between space-x-2">
+        <div id="tabs-header" class="flex w-full rounded-lg border-2">
+            {
+                tabs.map(
+                    (tab: TabExamenes) =>
+                        tab.examenes.length > 0 && (
+                            <Button
+                                variant="any"
+                                id={tab.key}
+                                className="h-9 w-full font-medium uppercase"
+                            >
+                                <span class="max-sm:hidden">{tab.title}</span>
+                                <span class="hidden max-sm:block">{tab.shorTitle}</span>
+                            </Button>
+                        ),
+                )
+            }
+        </div>
+
+        <a href="/agregar-examen" class={`flex h-full ${tabs.length >= 5 ? "max-sm:hidden" : ""}`}>
+            <Button className="flex h-full">
+                <Icon name="carbon:add-alt" size={20} class="mr-2 max-md:mr-0" />
+                <span class="max-md:hidden">Agregar Examen</span>
+            </Button>
+        </a>
+    </div>
+</div>
+<div id="tabs-content" class="mt-2 rounded-lg border-2 p-2">
+    {
+        tabs.map(
+            (tab: TabExamenes) =>
+                tab.examenes.length > 0 && (
+                    <div
+                        id={`content-${tab.key}`}
+                        class={`tab-content p-2 ${tab.key === activeTabKey ? "" : "hidden"}`}
+                    >
+                        <p class="ml-2 hidden text-lg font-bold uppercase max-sm:block">
+                            {tab.title}
+                        </p>
+                        <TableExamenes examenes={tab.examenes} />
+                    </div>
+                ),
+        )
+    }
+</div>
+
+<script is:inline>
+    function setupTabs() {
+        const tabsHeader = document.getElementById("tabs-header")?.children;
+        const tabsContent = document.getElementById("tabs-content")?.children;
+
+        const updateActiveClass = (element, isActive) => {
+            if (document.body.classList.contains("dark")) {
+                element.classList.toggle("active-dark", isActive);
+            } else {
+                element.classList.toggle("active-light", isActive);
+            }
+        };
+
+        if (tabsHeader) {
+            updateActiveClass(tabsHeader[0], true);
+            tabsContent[0].classList.remove("hidden");
+        }
+
+        if (tabsHeader && tabsContent) {
+            for (let i = 0; i < tabsHeader.length; i++) {
+                tabsHeader[i].addEventListener("click", () => {
+                    for (let j = 0; j < tabsHeader.length; j++) {
+                        updateActiveClass(tabsHeader[j], i === j);
+                        tabsContent[j].classList.toggle("hidden", i !== j);
+                    }
+                });
+            }
+        }
+    }
+
+    // If the document is not loaded, setup the tabs when it is.
+    document.addEventListener("DOMContentLoaded", () => {
+        setupTabs();
+    });
+
+    // If the document is already loaded, setup the tabs.
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+        setupTabs();
+    }
+</script>
+
+<style>
+    .tab-content.hidden {
+        display: none;
+    }
+    .active-light {
+        background-color: #111827;
+        color: #ffffff;
+    }
+    .active-dark {
+        background-color: #ffffff;
+        color: #000000;
+    }
+</style>
