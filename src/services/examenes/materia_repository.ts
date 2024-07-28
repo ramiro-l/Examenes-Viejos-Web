@@ -87,7 +87,9 @@ export class MateriaRepository extends GithubRepository implements IMateriaRepos
         date: string;
         file_type: string;
     } {
+        name = name.replace("Práctico/", "");
         let [type, ...rest] = name.split(" ");
+        type = type.replace("Prefinal", "Final");
         if (!isValidExamenType(type)) {
             type = "Otro";
         }
@@ -100,7 +102,7 @@ export class MateriaRepository extends GithubRepository implements IMateriaRepos
             let text = rest[i].split(".")[0];
 
             // Detect is number of exam.
-            if (text.match(/^\d+$/) && !text.match(/^\d{4}-\d{2}-\d{2}$/)) {
+            if (i == 0 && text.match(/^\d+$/) && !text.match(/^\d{4}-\d{2}-\d{2}$/)) {
                 number = parseInt(text);
                 continue;
             }
