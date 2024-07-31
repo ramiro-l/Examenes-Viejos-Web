@@ -20,6 +20,10 @@ interface paramsType {
     };
 }
 
+interface Props {
+    carrera: Carrera;
+}
+
 // Create the static paths for the carreras:
 export function getStaticPaths() {
     const params: paramsType[] = [];

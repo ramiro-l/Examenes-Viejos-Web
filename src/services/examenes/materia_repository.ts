@@ -1,11 +1,9 @@
-import { GithubRepository } from "../github/repository";
+import { GithubRepository, parserGithubRepositoryUrlToOwnerAndRepo } from "../github/repository";
 import { EXAMENES_VIEJOS_IGNORED_FILES } from "./constants";
 import TEST_FECTHED_MATERIA from "./examples-fetch/test-fetched-materia";
 import type { IMateriaRepository } from "./types";
 import type { Examen, ExamenType } from "@/models/examen";
 import { isValidExamenType } from "@/models/examen";
-import { githubPdfViewer } from "../viewer";
-import { parserGithubRepositoryUrlToOwnerAndRepo } from "../github/repository";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -55,7 +53,6 @@ export class MateriaRepository extends GithubRepository implements IMateriaRepos
                 file_type,
                 git_url: file.git_url,
                 web_url: file.html_url,
-                view_url: githubPdfViewer(file.html_url),
                 download_url: file.download_url,
             };
         });

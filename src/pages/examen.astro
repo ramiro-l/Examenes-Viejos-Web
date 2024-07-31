@@ -1,0 +1,75 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout
+    title="Examen Viejo FaMAF"
+    metaImage="https://i.ibb.co/kKv1B9z/Banner-Examenes-Viejos.png"
+    metaDescription="Esta pagina es una interfaz para ver todos los examenes viejos de FaMAF"
+    metaKeywords="examenes, viejos, famaf, computacion"
+    isNavbarVisible={false}
+    isFooterVisible={false}
+>
+    <div
+        class="flex h-[80vh] w-full flex-col place-items-center justify-center"
+        id="content-preview"
+    >
+        <iframe id="preview-pdf" class="fixed left-0 top-0 h-[100vh] w-[100vw]">
+            Tu navegador no soporta la visualización del documento.
+        </iframe>
+        <img id="preview-img" class="p-2" />
+
+        <p id="loader-preview" class="animate-pulse text-4xl font-bold">Cargando...</p>
+    </div>
+</Layout>
+
+<script is:inline>
+    document.addEventListener("DOMContentLoaded", async () => {
+        const querystring = window.location.search;
+        const params = new URLSearchParams(querystring);
+        const doc = params.get("document");
+        let view, url;
+        if (doc.endsWith(".pdf")) {
+            document.getElementById("preview-img").remove();
+            view = document.getElementById("preview-pdf");
+            url = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(doc)}`;
+        } else {
+            // Image case
+            document.getElementById("preview-pdf").remove();
+            view = document.getElementById("preview-img");
+            url = doc ? doc : "";
+        }
+
+        async function checkStatus(url) {
+            return await fetch(url, { method: "HEAD" }).then((res) => {
+                return res.ok;
+            });
+        }
+
+        function isValidURL(url) {
+            try {
+                new URL(url);
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+
+        if ((await checkStatus(doc)) && url && isValidURL(url)) {
+            view.src = url;
+
+            view.addEventListener("load", () => {
+                const loader = document.getElementById("loader-preview");
+                loader.remove();
+            });
+        } else {
+            const content = document.getElementById("content-preview");
+            content.innerHTML = `
+                    <p class="text-4xl font-bold">URL no valida</p>
+                    <a href="/" class="mt-5">
+                        <button class="underline">Volver al inicio</Button>
+                    </a>
+            `;
+        }
+    });
+</script>

@@ -67,3 +67,7 @@ export function parserGithubRepositoryUrlToOwnerAndRepo(name: string): {
 
     return { owner, repository };
 }
+
+export function githubPath(url: string): string {
+    return new URL(url).pathname;
+}
