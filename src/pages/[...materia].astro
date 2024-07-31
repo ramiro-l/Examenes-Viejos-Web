@@ -25,6 +25,11 @@ interface paramsType {
     };
 }
 
+interface Props {
+    carrera: Carrera;
+    materia: Materia;
+}
+
 // Create the static paths for the materias:
 export function getStaticPaths() {
     const params: paramsType[] = [];
@@ -51,9 +56,7 @@ export function getStaticPaths() {
     }
     return params;
 }
-const carrera: Carrera = Astro.props.carrera;
-const materia: Materia = Astro.props.materia;
-
+const { carrera, materia } = Astro.props;
 const materiaRepository = new MateriaRepository(materia.repo_examenes, materia.path);
 
 await materiaRepository.fetchContent();
