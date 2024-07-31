@@ -14,7 +14,10 @@ import Layout from "@/layouts/Layout.astro";
         class="flex h-[80vh] w-full flex-col place-items-center justify-center"
         id="content-preview"
     >
-        <iframe id="preview" class="fixed left-0 top-0 h-[100vh] w-[100vw]"></iframe>
+        <iframe id="preview-pdf" class="fixed left-0 top-0 h-[100vh] w-[100vw]">
+            Tu navegador no soporta la visualización del documento.
+        </iframe>
+        <img id="preview-img" class="p-2" />
 
         <p id="loader-preview" class="animate-pulse text-4xl font-bold">Cargando...</p>
     </div>
@@ -37,9 +40,18 @@ import Layout from "@/layouts/Layout.astro";
         }
 
         if (url && isValidURL(url)) {
-            const iframe = document.getElementById("preview");
-            iframe.src = url;
-            iframe.addEventListener("load", () => {
+            let view;
+            // si es un pdf
+            if (url.endsWith(".pdf")) {
+                view = document.getElementById("preview-pdf");
+                document.getElementById("preview-img").remove();
+            } else {
+                view = document.getElementById("preview-img");
+                document.getElementById("preview-pdf").remove();
+            }
+            view.src = url;
+
+            view.addEventListener("load", () => {
                 const loader = document.getElementById("loader-preview");
                 loader.remove();
             });
