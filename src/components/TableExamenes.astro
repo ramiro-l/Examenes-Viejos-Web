@@ -11,6 +11,7 @@ import { Button } from "./ui/button";
 import { Icon } from "astro-icon/components";
 import type { Examen } from "@/models/examen";
 
+import { githubPath } from "@/services/github/repository";
 interface Props {
     examenes: Examen[];
 }
@@ -45,7 +46,7 @@ const { examenes } = Astro.props;
                     <TableCell className="flex justify-end">
                         <div class="flex max-w-[500px] justify-end text-right">
                             <a
-                                href={examen.view_url}
+                                href={`/examen?document=${githubPath(examen.web_url)}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="mr-2 w-full"

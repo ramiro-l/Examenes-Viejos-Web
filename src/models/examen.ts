@@ -6,7 +6,6 @@ export interface Examen {
     file_name: string;
     git_url: string;
     web_url: string;
-    view_url: string;
     download_url: string;
 }
 
