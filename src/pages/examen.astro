@@ -24,11 +24,27 @@ import Layout from "@/layouts/Layout.astro";
 </Layout>
 
 <script is:inline>
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", async () => {
         const querystring = window.location.search;
         const params = new URLSearchParams(querystring);
         const doc = params.get("document");
-        const url = doc ? "http://nbviewer.jupyter.org/github/" + doc : "";
+        let view, url;
+        if (doc.endsWith(".pdf")) {
+            document.getElementById("preview-img").remove();
+            view = document.getElementById("preview-pdf");
+            url = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(doc)}`;
+        } else {
+            // Image case
+            document.getElementById("preview-pdf").remove();
+            view = document.getElementById("preview-img");
+            url = doc ? doc : "";
+        }
+
+        async function checkStatus(url) {
+            return await fetch(url, { method: "HEAD" }).then((res) => {
+                return res.ok;
+            });
+        }
 
         function isValidURL(url) {
             try {
@@ -39,16 +55,7 @@ import Layout from "@/layouts/Layout.astro";
             }
         }
 
-        if (url && isValidURL(url)) {
-            let view;
-            // si es un pdf
-            if (url.endsWith(".pdf")) {
-                view = document.getElementById("preview-pdf");
-                document.getElementById("preview-img").remove();
-            } else {
-                view = document.getElementById("preview-img");
-                document.getElementById("preview-pdf").remove();
-            }
+        if ((await checkStatus(doc)) && url && isValidURL(url)) {
             view.src = url;
 
             view.addEventListener("load", () => {
@@ -56,7 +63,6 @@ import Layout from "@/layouts/Layout.astro";
                 loader.remove();
             });
         } else {
-            // agregamos un mensaje de error el contenedor
             const content = document.getElementById("content-preview");
             content.innerHTML = `
                     <p class="text-4xl font-bold">URL no valida</p>

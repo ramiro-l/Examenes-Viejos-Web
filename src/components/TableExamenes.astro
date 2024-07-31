@@ -46,7 +46,7 @@ const { examenes } = Astro.props;
                     <TableCell className="flex justify-end">
                         <div class="flex max-w-[500px] justify-end text-right">
                             <a
-                                href={`/examen?document=${githubPath(examen.web_url)}`}
+                                href={`/examen?document=${examen.download_url}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="mr-2 w-full"
