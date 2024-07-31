@@ -38,7 +38,7 @@ export function getStaticPaths() {
     return params;
 }
 
-const { carrera } = Astro.props;
+const carrera: Carrera = Astro.props.carrera;
 
 // Load materias data only for the carrera:
 const materias_data = materias as Materia[];

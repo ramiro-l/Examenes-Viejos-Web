@@ -51,8 +51,8 @@ export function getStaticPaths() {
     }
     return params;
 }
-
-const { carrera, materia } = Astro.props;
+const carrera: Carrera = Astro.props.carrera;
+const materia: Materia = Astro.props.materia;
 
 const materiaRepository = new MateriaRepository(materia.repo_examenes, materia.path);
 
