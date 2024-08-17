@@ -84,6 +84,8 @@ export class MateriaRepository extends GithubRepository implements IMateriaRepos
         date: string;
         file_type: string;
     } {
+        name = name.replace("Teórico - práctico/", "");
+        name = name.replace("Laboratorio/", "");
         name = name.replace("Práctico/", "");
         let [type, ...rest] = name.split(" ");
         type = type.replace("Prefinal", "Final");

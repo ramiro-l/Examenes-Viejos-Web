@@ -1,7 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import TabsExamenes from "@/components/TabsExamenes.astro";
 import { Icon } from "astro-icon/components";
 import carreras from "@/data/carreras.json";
@@ -10,23 +9,22 @@ import type { Materia, MateriaSector } from "@/models/materia";
 import type { Carrera } from "@/models/carrera";
 import { parse_curtimestre_number_to_text } from "@/services/examenes/materia_repository";
 import { getTabsForMateria, type TabExmenes } from "@/lib/materias";
-import { SquareArrowOutUpRight } from "lucide-react";
 
 interface paramsType {
     params: {
-        materia: string;
+        materia_sector: string;
     };
     props: {
         carrera: Carrera;
         materia: Materia;
-        sectors: MateriaSector[];
+        sector: MateriaSector;
     };
 }
 
 interface Props {
     carrera: Carrera;
     materia: Materia;
-    sectors: MateriaSector[];
+    sector: MateriaSector;
 }
 
 // Create the static paths for the materias:
@@ -42,26 +40,28 @@ export function getStaticPaths() {
 
         for (let j = 0; j < materias_carrera.length; j++) {
             const materia = materias_carrera[j];
-            params.push({
-                params: {
-                    materia: `${carrera.code}/${materia.code}`,
-                },
-                props: {
-                    carrera: carrera,
-                    materia: materia,
-                    sectors: materia.sectors ? materia.sectors : [],
-                },
-            });
+            if (materia.sectors) {
+                for (let k = 0; k < materia.sectors.length; k++) {
+                    const sector = materia.sectors[k];
+
+                    params.push({
+                        params: {
+                            materia_sector: `${carrera.code}/${materia.code}/${sector.code}`,
+                        },
+                        props: {
+                            carrera: carrera,
+                            materia: materia,
+                            sector: sector,
+                        },
+                    });
+                }
+            }
         }
     }
     return params;
 }
-const { carrera, materia, sectors } = Astro.props;
-let tabs: TabExmenes[] = [];
-const haveSectors = sectors.length > 0;
-if (!haveSectors) {
-    tabs = await getTabsForMateria(materia);
-}
+const { carrera, materia, sector } = Astro.props;
+let tabs: TabExmenes[] = await getTabsForMateria(materia, sector.path);
 ---
 
 <Layout
@@ -70,7 +70,7 @@ if (!haveSectors) {
     metaDescription="Esta pagina es una interfaz para ver los examenes viejos del repositorio de github"
     metaKeywords="examenes, viejos, famaf, computacion"
 >
-    <h1 class="text-balance text-4xl">{materia.name}</h1>
+    <h1 class="text-balance text-4xl">{materia.name} | {sector.name}</h1>
 
     <div class="my-2 max-sm:flex max-sm:flex-col">
         <a href={materia.repo_examenes} target="_blank" rel="noopener noreferrer">
@@ -87,32 +87,6 @@ if (!haveSectors) {
         >
     </div>
     <br />
-    {
-        !haveSectors ? (
-            <TabsExamenes tabs={tabs} />
-        ) : (
-            <div class="flex min-h-[60vh] flex-col justify-center gap-2 max-md:min-h-0">
-                {sectors.map((sector) => (
-                    <Card
-                        key={sector.name}
-                        className=" pt-4 min-w-[450px] hover:bg-accent hover:cursor-pointer max-md:w-full max-md:min-w-0 h-[120px] flex flex-col justify-center items-center max-md:h-fit "
-                    >
-                        <CardTitle>
-                            <p class="text-center text-xl uppercase">{sector.name}</p>
-                        </CardTitle>
-                        <CardContent>
-                            <a
-                                href={`/${carrera.code}/${materia.code}/${sector.code}`}
-                                class="flex items-center justify-center"
-                            >
-                                <span class="underline">Ver Examenes</span>
-                                <SquareArrowOutUpRight size={14} className="ml-2" />
-                            </a>
-                        </CardContent>
-                    </Card>
-                ))}
-            </div>
-        )
-    }
+    <TabsExamenes tabs={tabs} />
     <br />
 </Layout>
