@@ -1,5 +1,11 @@
 import type { CarreraCode } from "./carrera";
 
+export interface MateriaSector {
+    name: string;
+    path: string;
+    code: string;
+}
+
 export interface Materia {
     name: string;
     code: string;
@@ -8,5 +14,5 @@ export interface Materia {
     anio: number;
     web: string;
     repo_examenes: string;
-    path?: string;
+    sectors?: MateriaSector[];
 }

@@ -52,7 +52,18 @@
         "anio": 1,
         "web": "",
         "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_AlgoritmosYEstructurasDeDatos1_FaMAF",
-        "path": "Pr%C3%A1ctico"
+        "sectors": [
+            {
+                "name": "Teórico - Practico",
+                "path": "Práctico",
+                "code": "teorico"
+            },
+            {
+                "name": "Laboratorio",
+                "path": "Laboratorio",
+                "code": "laboratorio"
+            }
+        ]
     },
     {
         "name": "Algoritmos y estructuras de datos 2",
@@ -62,7 +73,18 @@
         "anio": 2,
         "web": "",
         "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_AlgoritmosYEstructurasDeDatos2_FaMAF",
-        "path": "Pr%C3%A1ctico"
+        "sectors": [
+            {
+                "name": "Teórico - Practico",
+                "path": "Práctico",
+                "code": "teorico"
+            },
+            {
+                "name": "Laboratorio",
+                "path": "Laboratorio",
+                "code": "laboratorio"
+            }
+        ]
     },
     {
         "name": "Análisis numérico",
@@ -72,7 +94,18 @@
         "anio": 2,
         "web": "",
         "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_AnalisisNumerico_FaMAF",
-        "path": "Teórico%20-%20práctico"
+        "sectors": [
+            {
+                "name": "Teórico - Practico",
+                "path": "Teórico%20-%20práctico",
+                "code": "teorico"
+            },
+            {
+                "name": "Laboratorio",
+                "path": "Laboratorio",
+                "code": "laboratorio"
+            }
+        ]
     },
     {
         "name": "Organización del computador",
@@ -154,7 +187,18 @@
         "anio": 3,
         "web": "",
         "repo_examenes": "https://github.com/ExamenesViejos-FaMAF-Computacion/ExamenesViejos_BasesDeDatos_FaMAF",
-        "path": "Teórico%20-%20práctico"
+        "sectors": [
+            {
+                "name": "Teórico - Práctico",
+                "path": "Teórico%20-%20práctico",
+                "code": "teorico"
+            },
+            {
+                "name": "Laboratorio",
+                "path": "Laboratorio",
+                "code": "laboratorio"
+            }
+        ]
     },
     {
         "name": "Ingeniería del software 1",
