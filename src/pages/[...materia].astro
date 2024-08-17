@@ -93,23 +93,22 @@ if (!haveSectors) {
         ) : (
             <div class="flex min-h-[60vh] flex-col justify-center gap-2 max-md:min-h-0">
                 {sectors.map((sector) => (
-                    <Card
-                        key={sector.name}
-                        className=" pt-4 min-w-[450px] hover:bg-accent hover:cursor-pointer max-md:w-full max-md:min-w-0 h-[120px] flex flex-col justify-center items-center max-md:h-fit "
-                    >
-                        <CardTitle>
-                            <p class="text-center text-xl uppercase">{sector.name}</p>
-                        </CardTitle>
-                        <CardContent>
-                            <a
-                                href={`/${carrera.code}/${materia.code}/${sector.code}`}
-                                class="flex items-center justify-center"
-                            >
-                                <span class="underline">Ver Examenes</span>
-                                <SquareArrowOutUpRight size={14} className="ml-2" />
-                            </a>
-                        </CardContent>
-                    </Card>
+                    <a href={`/${carrera.code}/${materia.code}/${sector.code}`}>
+                        <Card
+                            key={sector.name}
+                            className=" pt-4 min-w-[450px] hover:bg-accent hover:cursor-pointer max-md:w-full max-md:min-w-0 h-[120px] flex flex-col justify-center items-center max-md:h-fit "
+                        >
+                            <CardTitle>
+                                <p class="text-center text-xl uppercase">{sector.name}</p>
+                            </CardTitle>
+                            <CardContent>
+                                <div class="flex items-center justify-center">
+                                    <span class="underline">Ver Examenes</span>
+                                    <SquareArrowOutUpRight size={14} className="ml-2" />
+                                </div>
+                            </CardContent>
+                        </Card>{" "}
+                    </a>
                 ))}
             </div>
         )
