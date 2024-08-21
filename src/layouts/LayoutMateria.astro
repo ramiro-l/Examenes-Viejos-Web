@@ -1,0 +1,46 @@
+---
+import Layout from "./Layout.astro";
+import { Icon } from "astro-icon/components";
+import { Badge } from "@/components/ui/badge";
+import type { Carrera } from "@/models/carrera";
+import type { Materia, MateriaSector } from "@/models/materia";
+import { parse_curtimestre_number_to_text } from "@/services/examenes/materia_repository";
+
+interface Props {
+    carrera: Carrera;
+    materia: Materia;
+    sector?: MateriaSector;
+}
+
+const { carrera, materia, sector } = Astro.props;
+---
+
+<Layout
+    title={`Examenes Viejos FaMAF$ | ${materia.name}`}
+    metaImage="https://i.ibb.co/kKv1B9z/Banner-Examenes-Viejos.png"
+    metaDescription="Esta pagina es una interfaz para ver los examenes viejos del repositorio de github"
+    metaKeywords="examenes, viejos, famaf, computacion"
+>
+    <h1 class="text-balance text-4xl">
+        {materia.name}
+        {sector ? `| ${sector.name}` : ``}
+    </h1>
+
+    <div class="my-2 max-sm:flex max-sm:flex-col">
+        <a href={materia.repo_examenes} target="_blank" rel="noopener noreferrer">
+            <Badge className="my-1 max-sm:flex max-sm:w-full max-sm:justify-between">
+                <p>Repositorio</p>
+                <Icon name="carbon:logo-github" size={16} class="ml-2" />
+            </Badge>
+        </a>
+        <Badge className="my-1 max-sm:w-full" variant="outline">{carrera.facultad}</Badge>
+        <Badge className="my-1 max-sm:w-full" variant="outline">{carrera.name} </Badge>
+        <Badge className="my-1 max-sm:w-full" variant="outline">{materia.anio}º año</Badge>
+        <Badge className="my-1 max-sm:w-full" variant="outline"
+            >{parse_curtimestre_number_to_text(materia.cuatrimestre)} cuatrimestre</Badge
+        >
+    </div>
+    <br />
+    <slot />
+    <br />
+</Layout>
