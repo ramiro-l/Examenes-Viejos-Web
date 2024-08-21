@@ -1,19 +1,17 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import Layout from "@/layouts/LayoutMateria.astro";
 import TabsExamenes from "@/components/TabsExamenes.astro";
-import { Icon } from "astro-icon/components";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import carreras from "@/data/carreras.json";
 import materias from "@/data/materias.json";
 import type { Materia, MateriaSector } from "@/models/materia";
 import type { Carrera } from "@/models/carrera";
-import { parse_curtimestre_number_to_text } from "@/services/examenes/materia_repository";
 import { getTabsForMateria, type TabExmenes } from "@/lib/materias";
 import { SquareArrowOutUpRight } from "lucide-react";
 
 interface paramsType {
     params: {
+        carrera: string;
         materia: string;
     };
     props: {
@@ -44,7 +42,8 @@ export function getStaticPaths() {
             const materia = materias_carrera[j];
             params.push({
                 params: {
-                    materia: `${carrera.code}/${materia.code}`,
+                    carrera: carrera.code,
+                    materia: materia.code,
                 },
                 props: {
                     carrera: carrera,
@@ -64,36 +63,14 @@ if (!haveSectors) {
 }
 ---
 
-<Layout
-    title={`Examenes Viejos FaMAF | ${materia.name}`}
-    metaImage="https://i.ibb.co/kKv1B9z/Banner-Examenes-Viejos.png"
-    metaDescription="Esta pagina es una interfaz para ver los examenes viejos del repositorio de github"
-    metaKeywords="examenes, viejos, famaf, computacion"
->
-    <h1 class="text-balance text-4xl">{materia.name}</h1>
-
-    <div class="my-2 max-sm:flex max-sm:flex-col">
-        <a href={materia.repo_examenes} target="_blank" rel="noopener noreferrer">
-            <Badge className="my-1 max-sm:flex max-sm:w-full max-sm:justify-between">
-                <p>Repositorio</p>
-                <Icon name="carbon:logo-github" size={16} class="ml-2" />
-            </Badge>
-        </a>
-        <Badge className="my-1 max-sm:w-full" variant="outline">{carrera.facultad}</Badge>
-        <Badge className="my-1 max-sm:w-full" variant="outline">{carrera.name} </Badge>
-        <Badge className="my-1 max-sm:w-full" variant="outline">{materia.anio}º año</Badge>
-        <Badge className="my-1 max-sm:w-full" variant="outline"
-            >{parse_curtimestre_number_to_text(materia.cuatrimestre)} cuatrimestre</Badge
-        >
-    </div>
-    <br />
+<Layout materia={materia} carrera={carrera}>
     {
         !haveSectors ? (
             <TabsExamenes tabs={tabs} />
         ) : (
             <div class="flex min-h-[60vh] flex-col justify-center gap-2 max-md:min-h-0">
                 {sectors.map((sector) => (
-                    <a href={`/${carrera.code}/${materia.code}/${sector.code}`}>
+                    <a href={`/${carrera.code}/${materia.code}-${sector.code}`}>
                         <Card
                             key={sector.name}
                             className=" pt-4 min-w-[450px] hover:bg-accent hover:cursor-pointer max-md:w-full max-md:min-w-0 h-[120px] flex flex-col justify-center items-center max-md:h-fit "
@@ -113,5 +90,4 @@ if (!haveSectors) {
             </div>
         )
     }
-    <br />
 </Layout>
