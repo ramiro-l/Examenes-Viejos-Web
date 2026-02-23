@@ -22,5 +22,5 @@
 
 <!-- Las preguntas se completan agregándole una [x] en caso de SI o una [ ] en caso de NO. -->
 
--   [ ] He revisado localmente los cambios para asegurarme de que no haya errores ni problemas.
--   [ ] He probado estos cambios en mobile y desktop.
+- [ ] He revisado localmente los cambios para asegurarme de que no haya errores ni problemas.
+- [ ] He probado estos cambios en mobile y desktop.
