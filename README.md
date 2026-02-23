@@ -31,21 +31,21 @@ Si deseas contribuir con código, por favor:
 
 Si tienes una idea, encuentras un error o deseas dar feedback sobre el proyecto:
 
--   Abre un nuevo problema en el repositorio describiendo tu idea, el error que encontraste o el feedback que deseas compartir.
+- Abre un nuevo problema en el repositorio describiendo tu idea, el error que encontraste o el feedback que deseas compartir.
 
--   Sé lo más detallado posible en la descripción.
+- Sé lo más detallado posible en la descripción.
 
--   Si es posible, incluye capturas de pantalla u otros recursos que puedan ayudar a entender mejor tu punto.
+- Si es posible, incluye capturas de pantalla u otros recursos que puedan ayudar a entender mejor tu punto.
 
 ## Formato de los Commits 📝
 
 Las convenciones de commit utilizadas en este proyecto son las siguientes:
 
--   **Tipo de Commit**: El tipo de commit proporciona contexto sobre el cambio realizado. Algunos ejemplos comunes incluyen feat para nuevas características, fix para correcciones de errores y docs para cambios en la documentación.
+- **Tipo de Commit**: El tipo de commit proporciona contexto sobre el cambio realizado. Algunos ejemplos comunes incluyen feat para nuevas características, fix para correcciones de errores y docs para cambios en la documentación.
 
--   **Ámbito Opcional**: El ámbito proporciona información adicional sobre el alcance del cambio, como el módulo o componente afectado.
+- **Ámbito Opcional**: El ámbito proporciona información adicional sobre el alcance del cambio, como el módulo o componente afectado.
 
--   **Descripción del Cambio**: La descripción del cambio debe ser breve pero descriptiva, proporcionando suficiente información para entender el propósito del commit.
+- **Descripción del Cambio**: La descripción del cambio debe ser breve pero descriptiva, proporcionando suficiente información para entender el propósito del commit.
 
 Ejemplo de un commit siguiendo estas convenciones:
 
